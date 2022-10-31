@@ -1,0 +1,50 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 text-center">
+
+      <mat-card class="bg-light mb-3">
+        
+        <mat-card-title>
+             <div class="container text-center">
+        <img src="./../../../assets/logo.jpg" alt="medicare" width="75px" />
+      </div>
+      <h1  class="text-center">Login Here</h1>
+      </mat-card-title>
+     
+     <mat-card-content>
+        <form (ngSubmit)="loginUser()">
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Enter Your Username</mat-label>
+          <input matInput placeholder="Username " 
+          [(ngModel)]="user.username"
+          name="username" required/>
+          <mat-hint>Username must be unique !!!!</mat-hint>
+        </mat-form-field>
+
+         <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Enter Your Password</mat-label>
+          <input matInput placeholder="Password " 
+          [(ngModel)]="user.password"
+          name="password" required/>
+        </mat-form-field>
+
+         
+
+        
+
+        <div class="container">
+
+            <button type="submit" mat-raised-button color="primary">Login</button>
+
+        </div>
+
+
+
+      </form>
+     </mat-card-content>
+      </mat-card>
+      
+    </div>
+  </div>
+</div>
