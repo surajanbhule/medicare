@@ -10,8 +10,11 @@ import { RegisterComponent } from './pages/register/register.component';
 import { Route, RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from './material/material.module';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component'
+import { AuthInterceptor } from './services/auth.interceptor';
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 
 
 
@@ -23,7 +26,8 @@ import { HomeComponent } from './pages/home/home.component'
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    
+    AdminDashboardComponent,
+    UserDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,9 +37,14 @@ import { HomeComponent } from './pages/home/home.component'
     MaterialModule,
     FormsModule,
     HttpClientModule,
-    
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

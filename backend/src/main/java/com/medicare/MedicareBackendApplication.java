@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +18,9 @@ import java.util.Set;
 public class MedicareBackendApplication implements CommandLineRunner {
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	private UserRepository userRepository;
 	public static void main(String[] args) {
@@ -29,7 +33,7 @@ public class MedicareBackendApplication implements CommandLineRunner {
 		User user = new User();
 		user.setUsername("admin");
 		user.setUser_email("surajanbhule69@gmail.com");
-		user.setPassword("admin@123");
+		user.setPassword(passwordEncoder.encode("admin123"));
 		user.setEnabled(true);
 		user.setFirst_name("Suraj");
 		user.setLast_name("Anbhule");

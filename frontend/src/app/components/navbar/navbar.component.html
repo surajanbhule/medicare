@@ -1,5 +1,5 @@
-<mat-toolbar color="primary">
-  <span class="app-title-color" routerLink=""> 
+<mat-toolbar color="primary" class="m-auto">
+  <span class="app-title-color" routerLink="" mat-card-title> 
     <img src="./../../../assets/logo.jpg" alt="" 
         width="30px" 
         style="background-color: white ;"
@@ -8,17 +8,36 @@
   </span>
   <span class="nav-spacer"></span>
 
-  <a mat-icon-button 
-          routerLink="login">
+  <a *ngIf="!isLoggedIn "
+     mat-icon-button 
+     routerLink="login">
     <mat-icon>login</mat-icon>
     Login
 </a>
 
-   <a mat-icon-button 
+   <a    *ngIf="!isLoggedIn"
+          mat-icon-button 
           class="me-5 ms-5"
           routerLink="register">
     <mat-icon> account_circle </mat-icon>
     Register
+</a>
+
+<a    *ngIf="isLoggedIn && user"
+          mat-icon-button 
+          class="me-5 ms-2"
+          routerLink="register">
+    <mat-icon> account_circle </mat-icon>
+    {{user.username}}
+</a>
+
+   <a  *ngIf="isLoggedIn && user"
+        (click)="logout()"
+          mat-icon-button 
+          class="me-5 ms-5"
+          >
+    <mat-icon> logout </mat-icon>
+    Logout
 </a>
   
 </mat-toolbar>

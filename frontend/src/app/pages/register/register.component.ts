@@ -26,10 +26,15 @@ export class RegisterComponent implements OnInit {
 
   registerUser(){
     
-    if (this.user.username == '' || this.user.username == null) {
+    if (this.user.username == '' || this.user.username == null ) {
       this.snack.open('Username is required','ok')
       return;
-    }  if (this.user.password == '' || this.user.password == null) {
+    }if (this.user.username.length>13 || this.user.username.length < 5 ) {
+      this.snack.open('Username length should be less than 13 character or greater than 5 character', 'ok');
+      return;
+    } 
+    
+    if (this.user.password == '' || this.user.password == null) {
       this.snack.open('Password is required', 'ok');
       return;
     } if (this.user.first_name == '' || this.user.first_name == null) {

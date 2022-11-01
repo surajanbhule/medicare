@@ -6,6 +6,7 @@ import com.medicare.models.UserRole;
 import com.medicare.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -18,6 +19,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping("/")
     public User addUser(@RequestBody User user) throws Exception {
@@ -34,7 +38,7 @@ public class UserController {
         userRoles.add(userRole);
 
         user.setUserRoles(userRoles);
-
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return  userService.createUser(user,userRoles);
     }
 
