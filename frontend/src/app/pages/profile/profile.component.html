@@ -1,0 +1,41 @@
+<mat-card class="mt-2">
+    <h1 class="text-center" matSubheader>Profile Information</h1>
+    <mat-card-content>
+        <div class="container">
+            <div class="container text-center">
+                <img src="./../../../assets/account_icon.png" alt="" width="200px" class="profile">
+                <h1>{{user.first_name}} {{user.last_name}}</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-10 offset-md-1" >
+                    
+                    <table class="profile-table">
+                        <tr>
+                            <td>Username</td>
+                            
+                            <td>{{user.username}}</td>
+  
+                        </tr>
+
+                         
+
+                         <tr>
+                            <td>Email</td>
+                            <td>{{user.user_email}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Phone</td>
+                            <td>{{user.user_phone}}</td>
+                        </tr>
+                    </table>
+                   
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions class="text-center">
+        <button mat-raised-button color="primary">Update Profile</button>
+        <button mat-raised-button color="accent">Change Password</button>
+    </mat-card-actions>
+</mat-card>

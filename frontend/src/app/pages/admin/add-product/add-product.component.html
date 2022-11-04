@@ -1,0 +1,89 @@
+<mat-card class="mt-2">
+  <h1 matSubheader>Add New Product</h1>
+
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 text-center">
+        <mat-card-content>
+          <form (ngSubmit)="addProduct()">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Enter Product Name</mat-label>
+              <input
+                matInput
+                placeholder="Product Name "
+                [(ngModel)]="product.product_name"
+                name="product_name"
+                required
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Enter Product Description</mat-label>
+              <textarea
+                matInput
+                placeholder="Product Description"
+                [(ngModel)]="product.product_description"
+                name="product_desc"
+                required
+                cols="25"
+                maxlength="100"
+              >
+              </textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Enter Product Price</mat-label>
+              <input
+                matInput
+                placeholder="Product Price "
+                [(ngModel)]="product.product_price"
+                name="product_price"
+                required
+                type="number"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Enter Product Discount</mat-label>
+              <input
+                matInput
+                placeholder="Product Discount "
+                [(ngModel)]="product.product_discount"
+                name="product_discount"
+                required
+                type="number"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Enter Product Stock</mat-label>
+              <input
+                matInput
+                placeholder="Product Stock "
+                [(ngModel)]="product.product_stock"
+                name="product_stock"
+                required
+                type="number"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label> Category </mat-label>
+              <mat-select name="category" [(ngModel)]="product.category.id" (selectionChange)="valueChange()">
+                <mat-option *ngFor="let c of categories" [value]="c.id">
+                    {{c.category_name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div class="container">
+              <button type="submit" mat-raised-button color="primary">
+                Add Product
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </div>
+    </div>
+  </div>
+</mat-card>

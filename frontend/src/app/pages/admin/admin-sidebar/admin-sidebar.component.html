@@ -1,0 +1,45 @@
+<mat-card class="mt-2 ms-2 ">
+    <mat-action-list>
+        <div matSubheader>MENU</div>
+        <button mat-list-item routerLink="/admin">
+            <mat-icon mat-list-icon>home_outline</mat-icon>Home
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-list-item routerLink="/admin/profile">
+            <mat-icon mat-list-icon>account_box</mat-icon>Profile
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-list-item routerLink="/admin/view-categories">
+            <mat-icon mat-list-icon>category</mat-icon> Categories
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-list-item routerLink="/admin/view-products">
+            <mat-icon mat-list-icon>inventory</mat-icon> Products
+        </button>
+
+         <mat-divider></mat-divider>
+
+        <button mat-list-item routerLink="/admin/profile">
+            <mat-icon mat-list-icon>group</mat-icon> Users
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-list-item routerLink="/admin/profile">
+            <mat-icon mat-list-icon>rule_sharp</mat-icon> Pending Orders
+        </button>
+
+         <mat-divider></mat-divider>
+
+        <button mat-list-item (click)="logout()" style="color: #f44337;">
+            <mat-icon mat-list-icon color="warn">logout</mat-icon> Logout
+        </button>
+
+    </mat-action-list>
+</mat-card>

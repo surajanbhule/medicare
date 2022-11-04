@@ -1,0 +1,24 @@
+<mat-card class="mt-2 ms-2">
+    <mat-action-list>
+        
+        <button mat-list-item routerLink="/user-dashboard">
+            <mat-icon mat-list-icon>account_box</mat-icon>Profile
+        </button>
+       <mat-divider></mat-divider>
+        <button mat-list-item routerLink="/user-dashboard/address">
+            <mat-icon mat-list-icon>business</mat-icon>Address
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-list-item routerLink="/user-dashboard/orders">
+            <mat-icon mat-list-icon>send_time</mat-icon>Orders
+        </button>
+        <mat-divider></mat-divider>
+
+         <mat-divider></mat-divider>
+
+        <button mat-list-item (click)="logout()" style="color: #f44337;">
+            <mat-icon mat-list-icon color="warn">logout</mat-icon> Logout
+        </button>
+
+    </mat-action-list>
+</mat-card>

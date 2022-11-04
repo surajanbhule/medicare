@@ -1,0 +1,17 @@
+.profile-table{
+    width: 100%;
+}
+
+.profile-table tr td{
+    padding: 20px 20px;
+    border: 0.5px solid #E0E0E0;
+    
+}
+
+.profile{
+    border: 2.5px solid #607D8B;
+    border-radius: 50%;
+    max-width: 250px;
+    max-height: 250px;
+}
+

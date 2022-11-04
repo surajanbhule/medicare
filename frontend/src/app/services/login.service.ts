@@ -63,4 +63,20 @@ export class LoginService {
     let user = this.getUser();
     return user.authorities[0].authority;
   }
+
+  public isAdmin(){
+    if(this.getUserRole() == 'ADMIN'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  public isNormal(){
+    if (this.getUserRole() == 'NORMAL') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -7,6 +7,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -20,7 +24,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatCardModule,
     MatIconModule,
     MatSnackBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatListModule,
+    MatTooltipModule,
+    MatRippleModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }

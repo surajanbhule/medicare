@@ -1,0 +1,25 @@
+<mat-card class="mt-2">
+    <h1 matSubheader>Product List</h1>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" routerLink="/admin/add-product"> <mat-icon color="accent">add_circle</mat-icon> New Product </button>
+    </mat-card-actions>
+    <mat-list>
+        <mat-list-item class="product-box" *ngFor="let p of products">
+            
+            <div mat-line>{{p.product_name}}</div>
+            <div mat-line>{{p.product_price|currency:'INR'}} <sub>Price</sub> | {{p.product_discount/100|percent}} <sub>Discount</sub> | {{p.product_selling_price|currency:'INR'}} <sub>Selling Price</sub> | {{p.product_stock}} <sub>Product Stock Remaining</sub></div>
+            <div mat-line>
+                <button mat-icon-button (click)="deleteProduct(p.id)">
+                    <mat-icon color="warn">delete</mat-icon>
+                </button>
+                <button mat-icon-button>
+                    <mat-icon color="primary" [routerLink]="'/admin/update-product/'+p.id">edit</mat-icon>
+                </button>
+            </div>
+            
+
+            <mat-divider></mat-divider>
+            
+        </mat-list-item>
+    </mat-list>
+</mat-card>

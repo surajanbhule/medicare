@@ -15,6 +15,18 @@ import { HomeComponent } from './pages/home/home.component'
 import { AuthInterceptor } from './services/auth.interceptor';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { AdminSidebarComponent } from './pages/admin/admin-sidebar/admin-sidebar.component';
+import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
+import { UserSidebarComponent } from './pages/user/user-sidebar/user-sidebar.component';
+import { UserAddressComponent } from './pages/user/user-address/user-address.component';
+import { UserOrdersComponent } from './pages/user/user-orders/user-orders.component';
+import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
+import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
+import { UpdateCategoryComponent } from './pages/admin/update-category/update-category.component';
+import { AddProductComponent } from './pages/admin/add-product/add-product.component';
+import { ViewProductComponent } from './pages/admin/view-product/view-product.component';
+import { UpdateProductComponent } from './pages/admin/update-product/update-product.component';
 
 
 
@@ -28,6 +40,18 @@ import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboa
     HomeComponent,
     AdminDashboardComponent,
     UserDashboardComponent,
+    ProfileComponent,
+    AdminSidebarComponent,
+    AdminHomeComponent,
+    UserSidebarComponent,
+    UserAddressComponent,
+    UserOrdersComponent,
+    AddCategoryComponent,
+    CategoryListComponent,
+    UpdateCategoryComponent,
+    AddProductComponent,
+    ViewProductComponent,
+    UpdateProductComponent,
   ],
   imports: [
     BrowserModule,

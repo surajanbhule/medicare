@@ -1,0 +1,35 @@
+<mat-card class="mt-2">
+    <h1 matSubheader>Categories</h1>
+
+    <mat-card-actions>
+         <button mat-raised-button color="primary" routerLink="/admin/add-category" matRipple>
+            <mat-icon color="accent">add_circle</mat-icon>
+            New Category
+        </button>
+    </mat-card-actions>
+
+   
+    
+    <mat-list *ngIf="categories">
+        <mat-list-item *ngFor="let category of categories">
+            <mat-icon mat-list-icon>category</mat-icon>
+            <div mat-line>{{category.category_name}}</div>
+            <div mat-line>{{category.category_description}}</div>
+            <button mat-icon-button>
+                <mat-icon color="warn" 
+                          matTooltip="delete category"
+                          (click)="deleteCategory(category.id)">
+                delete
+                </mat-icon>
+            </button>
+            <button mat-icon-button>
+                <mat-icon color="primary" 
+                          matTooltip="update category"
+                          [routerLink]="'/admin/update-category/'+category.id">
+                    edit
+                </mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+</mat-card>
