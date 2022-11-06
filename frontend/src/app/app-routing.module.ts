@@ -7,6 +7,7 @@ import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.componen
 import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
 import { UpdateCategoryComponent } from './pages/admin/update-category/update-category.component';
 import { UpdateProductComponent } from './pages/admin/update-product/update-product.component';
+import { ViewProductImagesComponent } from './pages/admin/view-product-images/view-product-images.component';
 import { ViewProductComponent } from './pages/admin/view-product/view-product.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -70,6 +71,10 @@ const routes: Routes = [
       {
         path:'update-product/:product_id',
         component:UpdateProductComponent
+      },
+      {
+        path:'view-images/:product_id',
+        component:ViewProductImagesComponent
       }
     ]
   },

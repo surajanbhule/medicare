@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ImageProcessingService } from 'src/app/services/image-processing.service';
 import { ProductService } from 'src/app/services/product.service';
+import { Product } from 'src/model/product.model';
 import Swal from 'sweetalert2';
+import { ViewProductImagesComponent } from '../view-product-images/view-product-images.component';
 
 
 @Component({
@@ -12,17 +16,25 @@ export class ViewProductComponent implements OnInit {
 
   products:any=[]
   
-  constructor(private productService:ProductService) { }
+  constructor(private productService:ProductService,
+              private imageDialog:MatDialog,
+              private imageProcessingService:ImageProcessingService) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(
-      (data:any)=>{
-        this.products=data;
-      },
-      (error)=>{
-        alert('unable to load products')
-      }
-    )
+    this.productService
+      .getProducts()
+      .subscribe(
+        (data: any) => {
+          this.products = data;
+          
+          for(let p of this.products){
+            p = this.imageProcessingService.createProductImages(p);
+          }
+        },
+        (error) => {
+          alert('unable to load products');
+        }
+      );
   }
 
   deleteProduct(id:any){
@@ -61,6 +73,24 @@ export class ViewProductComponent implements OnInit {
 
 
 
+  }
+
+  showImages(product:Product){
+
+
+
+
+    console.log(product);
+    this.imageDialog.open(ViewProductImagesComponent,{
+      data:{
+        images:product.productImages,
+        productTitle:product.product_name
+      },
+      height:"250px",
+      width:"1000px",
+      disableClose:false
+      
+    });
   }
 
 }

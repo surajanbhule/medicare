@@ -11,6 +11,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -28,7 +30,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatListModule,
     MatTooltipModule,
     MatRippleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }

@@ -27,6 +27,8 @@ import { UpdateCategoryComponent } from './pages/admin/update-category/update-ca
 import { AddProductComponent } from './pages/admin/add-product/add-product.component';
 import { ViewProductComponent } from './pages/admin/view-product/view-product.component';
 import { UpdateProductComponent } from './pages/admin/update-product/update-product.component';
+import { NgxUiLoaderBlurredDirective, NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
+import { ViewProductImagesComponent } from './pages/admin/view-product-images/view-product-images.component';
 
 
 
@@ -52,6 +54,7 @@ import { UpdateProductComponent } from './pages/admin/update-product/update-prod
     AddProductComponent,
     ViewProductComponent,
     UpdateProductComponent,
+    ViewProductImagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,10 @@ import { UpdateProductComponent } from './pages/admin/update-product/update-prod
     MaterialModule,
     FormsModule,
     HttpClientModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true,
+    }),
   ],
   providers: [
     {

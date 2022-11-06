@@ -3,6 +3,7 @@ package com.medicare.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -21,6 +22,11 @@ public class Product {
     @ManyToOne()
     @JoinColumn(name = "category_id")
     private Category category;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "product_images",
+    joinColumns = {@JoinColumn(name = "product_id")},
+    inverseJoinColumns = {@JoinColumn(name = "image_id")})
+    private Set<ProductImage> product_images;
 
     public Product() {
     }
@@ -97,5 +103,11 @@ public class Product {
         this.category = category;
     }
 
+    public Set<ProductImage> getProduct_images() {
+        return product_images;
+    }
 
+    public void setProduct_images(Set<ProductImage> product_images) {
+        this.product_images = product_images;
+    }
 }

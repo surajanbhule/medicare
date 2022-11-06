@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Product } from 'src/model/product.model';
 import baseUrl from './helper';
 
 @Injectable({
@@ -8,12 +9,12 @@ import baseUrl from './helper';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  public addProduct(product:any){
+  public addProduct(product:FormData){
     return this.http.post(`${baseUrl}/products/`,product);
   }
 
   public getProducts(){
-    return this.http.get(`${baseUrl}/products/`)
+    return this.http.get(`${baseUrl}/products/`);
   }
 
   public deleteProduct(id:any){
@@ -24,7 +25,7 @@ export class ProductService {
     return this.http.get(`${baseUrl}/products/${id}`)
   }
 
-  public updateProduct(product:any){
+  public updateProduct(product:FormData){
     return this.http.put(`${baseUrl}/products/`,product)
   }
 

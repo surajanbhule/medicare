@@ -4,9 +4,10 @@
         <button mat-raised-button color="primary" routerLink="/admin/add-product"> <mat-icon color="accent">add_circle</mat-icon> New Product </button>
     </mat-card-actions>
     <mat-list>
-        <mat-list-item class="product-box" *ngFor="let p of products">
+        <mat-list-item class="product-box" *ngFor="let p of products" >
             
             <div mat-line>{{p.product_name}}</div>
+            <h3 mat-line style="font-weight:bold">{{p.category.category_name}}</h3>
             <div mat-line>{{p.product_price|currency:'INR'}} <sub>Price</sub> | {{p.product_discount/100|percent}} <sub>Discount</sub> | {{p.product_selling_price|currency:'INR'}} <sub>Selling Price</sub> | {{p.product_stock}} <sub>Product Stock Remaining</sub></div>
             <div mat-line>
                 <button mat-icon-button (click)="deleteProduct(p.id)">
@@ -15,11 +16,23 @@
                 <button mat-icon-button>
                     <mat-icon color="primary" [routerLink]="'/admin/update-product/'+p.id">edit</mat-icon>
                 </button>
-            </div>
-            
 
-            <mat-divider></mat-divider>
+                <button mat-icon-button>
+                    <mat-icon color="primary" [matTooltip]="p.product_description">description</mat-icon>
+                </button>
+            </div>
+            <ng-container *ngFor="let image of p.productImages">
+              <img [src]="image.url" alt="" width="75px" class="image-preview" >
+            </ng-container>
+            <button mat-button (click)="showImages(p)">
+                <mat-icon color="primary"  matTooltip="show preview">visibility</mat-icon>
+                view
+            </button>
             
+            
+            
+            <mat-divider></mat-divider>
+           
         </mat-list-item>
     </mat-list>
 </mat-card>

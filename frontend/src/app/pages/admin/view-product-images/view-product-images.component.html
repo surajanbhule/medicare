@@ -1,0 +1,8 @@
+<h1 mat-dialog-title> {{data.productTitle}} Images </h1>
+
+<mat-grid-list cols="4" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let fileHandle of data.images">
+        <img [src]="fileHandle.url" alt="" width="60px" height="60px">
+    </mat-grid-tile>
+</mat-grid-list>
+

@@ -1,90 +1,86 @@
 <mat-card class="mt-2">
-  <h1 matSubheader>Update Product</h1>
+  <h1 matSubheader>Add New Product</h1>
 
-  <div class="container mt-3">
-    <div class="row">
-      <div class="col-md-10 offset-md-1 text-center">
-        <mat-card-content>
-          <form (ngSubmit)="updateProduct()">
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Enter Product Name</mat-label>
-              <input
-                matInput
-                placeholder="Product Name "
-                [(ngModel)]="product.product_name"
-                name="product_name"
-                required
-              />
-            </mat-form-field>
+  <mat-card-content>
+    <form (ngSubmit)="updateProduct()">
+      <div class="row">
 
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Enter Product Description</mat-label>
-              <textarea
-                matInput
-                placeholder="Product Description"
-                [(ngModel)]="product.product_description"
-                name="product_desc"
-                required
-                cols="25"
-                maxlength="100"
-              >
-              </textarea>
-            </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Enter Product Price</mat-label>
-              <input
-                matInput
-                placeholder="Product Price "
-                [(ngModel)]="product.product_price"
-                name="product_price"
-                required
-                type="number"
-              />
-            </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Enter Product Discount</mat-label>
-              <input
-                matInput
-                placeholder="Product Discount "
-                [(ngModel)]="product.product_discount"
-                name="product_discount"
-                required
-                type="number"
-              />
-            </mat-form-field>
+        <div class="col-md-6 text-center">
 
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Enter Product Stock</mat-label>
-              <input
-                matInput
-                placeholder="Product Stock "
-                [(ngModel)]="product.product_stock"
-                name="product_stock"
-                required
-                type="number"
-              />
-            </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Enter Product Name</mat-label>
+            <input matInput placeholder="Product Name " [(ngModel)]="product.product_name" name="product_name"
+              required />
+          </mat-form-field>
 
-            <mat-form-field appearance="fill" class="w-100">
-              <mat-label> Category </mat-label>
-              <mat-select name="category" [(ngModel)]="product.category.id">
-                <mat-option *ngFor="let c of categories" [value]="c.id">
-                    {{c.category_name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Enter Product Description</mat-label>
+            <textarea matInput placeholder="Product Description" [(ngModel)]="product.product_description"
+              name="product_desc" required cols="25" maxlength="100">
+                      </textarea>
+          </mat-form-field>
 
-            <div class="container">
-              <button type="submit" mat-raised-button color="primary">
-                Update Product
-              </button>
-            </div>
-          </form>
-        </mat-card-content>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Enter Product Price</mat-label>
+            <input matInput placeholder="Product Price " [(ngModel)]="product.product_price" name="product_price"
+              required type="number" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Enter Product Discount</mat-label>
+            <input matInput placeholder="Product Discount " [(ngModel)]="product.product_discount"
+              name="product_discount" required type="number" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Enter Product Stock</mat-label>
+            <input matInput placeholder="Product Stock " [(ngModel)]="product.product_stock" name="product_stock"
+              required type="number" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label> Category </mat-label>
+            <mat-select name="category" [(ngModel)]="product.category.id">
+              <mat-option *ngFor="let c of categories" [value]="c.id">
+                {{c.category_name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+        </div>
+
+        <div class="col-md-6">
+
+          <input type="file" matTooltip="Don't select same image" class="" value="select" #selectFile multiple
+            (change)="onFileSelected($event)">
+
+          <mat-grid-list cols="4" rowHeight="2:1" class="mt-2">
+
+            <mat-grid-tile *ngFor="let productImage of product.productImages ; let i=index">
+              <div style="position:relative">
+                <mat-icon class="btn-remove-image" color="warn" (click)="removeImage(i)" matTooltip="Remove Image">
+                  remove_circle</mat-icon>
+                <img [src]="productImage.url" alt="" width="55px" height="55px">
+              </div>
+            </mat-grid-tile>
+
+          </mat-grid-list>
+
+        </div>
+
+        <div class="container text-center mt-2">
+          <button type="submit" mat-raised-button color="primary">
+            Update Product
+          </button>
+        </div>
+
       </div>
-    </div>
-  </div>
+    </form>
+  </mat-card-content>
+
 </mat-card>
 
