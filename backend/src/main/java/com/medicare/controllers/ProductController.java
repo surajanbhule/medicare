@@ -85,37 +85,5 @@ public class ProductController {
         return productService.getProduct(product_id);
     }
 
-    @GetMapping("/products_by_category")
-    public Set<Product> getProductsOfCategory(@RequestBody Category category){
-        return productService.getProductsOfCategory(category);
-    }
 
-
-
-    // ------------- Category Service Endpoints ------------------
-
-    @PostMapping("/category")
-    public Category addCategory(@RequestBody Category category){
-        return  categoryService.addCategory(category);
-    }
-
-    @PutMapping("/category")
-    public Category updateCategory(@RequestBody Category updatedCategory){
-        return categoryService.updateCategory(updatedCategory);
-    }
-
-    @GetMapping("/category")
-    public Set<Category> getCategories(){
-        return categoryService.getAllCategories();
-    }
-
-    @GetMapping("/category/{category_id}")
-    public Category getCategory(@PathVariable("category_id") Long category_id){
-        return categoryService.getCategory(category_id);
-    }
-
-    @DeleteMapping("/category/{category_id}")
-    public void deleteCategory(@PathVariable("category_id") Long category_id){
-        categoryService.deleteCategory(category_id);
-    }
 }

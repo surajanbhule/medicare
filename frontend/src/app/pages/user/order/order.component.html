@@ -1,0 +1,30 @@
+<button mat-raised-button mat-dialog-close color="accent">
+    <mat-icon>close</mat-icon>
+</button>
+
+<mat-stepper>
+    <mat-step editable="false" completed="true">
+       <ng-template matStepLabel>Address</ng-template>
+       
+
+        <button mat-button matStepperNext >Next</button>
+    </mat-step>
+
+    <mat-step>
+
+        <ng-template matStepLabel>Payment</ng-template>
+        
+        <button mat-button matStepperNext>Next</button>
+    
+    </mat-step>
+
+    <mat-step>
+
+        <ng-template matStepLabel>Address</ng-template>
+
+        <h1>Order Confirmed, Delivery expected soon</h1>
+        
+        <button mat-button mat-dialog-close>close</button>
+    
+    </mat-step>
+</mat-stepper>

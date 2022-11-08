@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private snackbar:MatSnackBar,
               private loginService:LoginService,
-              private route:Router) { }
+              private route:Router,
+              private userService:UserService) { }
 
   ngOnInit(): void {
   }
@@ -46,27 +48,29 @@ export class LoginComponent implements OnInit {
               console.log(user);
 
               if(this.loginService.getUserRole() =='ADMIN'){
-                
                 this.route.navigate(['admin']);
                 this.loginService.loginStatusSubject.next(true);
               }else if(this.loginService.getUserRole() == 'NORMAL'){
                 
-                 this.route.navigate(['user-dashboard']);
+                //  this.route.navigate(['']);
+                 location.href="";
                  this.loginService.loginStatusSubject.next(true);
+                 this.userService.cartStatus.next(true);
+                    
               }else{
                 this.loginService.logout();
                 location.reload();
               }
             },
             (error)=>{
-              this.snackbar.open('Invalid Details, Try with correct details !!!')
+              this.snackbar.open('Invalid Details, Try with correct details !!!','ok')
             }
           )
         },
         (error)=>{
           console.log('error');
           console.log(error);
-          this.snackbar.open('Invalid Details, Try with correct details !!!');
+          this.snackbar.open('Invalid Details, Try with correct details !!!','OK');
         }
       )
   }

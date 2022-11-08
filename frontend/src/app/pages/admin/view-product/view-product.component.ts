@@ -76,10 +76,6 @@ export class ViewProductComponent implements OnInit {
   }
 
   showImages(product:Product){
-
-
-
-
     console.log(product);
     this.imageDialog.open(ViewProductImagesComponent,{
       data:{

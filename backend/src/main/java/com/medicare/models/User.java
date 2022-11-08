@@ -24,6 +24,8 @@ public class User implements UserDetails {
     private String user_phone;
     private boolean enabled=true;
 
+
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user",fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();

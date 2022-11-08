@@ -1,0 +1,23 @@
+mat-card{
+ width: 330px !important;
+ height: 330px !important;
+}
+
+mat-grid-tile{
+    border: 1px solid indigo;
+    margin-bottom: 10px;
+}
+
+.discount{
+    position: absolute;
+    top:-50;
+    left: -10;
+}
+
+.menu{
+    border-bottom: 1px solid lightgrey;
+}
+
+.cart{
+    color: green;
+}

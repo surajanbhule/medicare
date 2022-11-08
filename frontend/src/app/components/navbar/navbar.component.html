@@ -7,6 +7,11 @@
      MEDICARE
   </span>
   <span class="nav-spacer"></span>
+
+<button mat-button *ngIf="isLoggedIn && user && products_in_cart" (click)="showCart()" >
+  Cart <mat-icon [matBadge]="products_in_cart"  class="demo-section" matBadgeColor="accent">shopping_cart</mat-icon>
+</button>
+
 <a    *ngIf="isLoggedIn && user"
           mat-button
           (click)="openDashboard()">
@@ -14,6 +19,9 @@
         width="35px" 
         matTooltip="Go To Dashboard">    
 </a>
+
+
+
   <a *ngIf="!isLoggedIn "
      mat-icon-button 
      routerLink="login">

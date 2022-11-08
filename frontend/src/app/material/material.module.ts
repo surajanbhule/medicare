@@ -13,6 +13,10 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatStepperModule } from '@angular/material/stepper';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 
@@ -32,7 +36,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatRippleModule,
     MatSelectModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatBadgeModule,
+    MatStepperModule,
+  
   ]
 })
 export class MaterialModule { }

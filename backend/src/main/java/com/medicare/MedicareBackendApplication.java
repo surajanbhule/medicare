@@ -1,9 +1,12 @@
 package com.medicare;
 
+import com.medicare.models.Cart;
 import com.medicare.models.Role;
 import com.medicare.models.User;
 import com.medicare.models.UserRole;
+import com.medicare.repositories.CartRepository;
 import com.medicare.repositories.UserRepository;
+import com.medicare.services.CartService;
 import com.medicare.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,6 +26,12 @@ public class MedicareBackendApplication implements CommandLineRunner {
 	private BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private CartRepository cartRepository;
+
+	@Autowired
+	private CartService cartService;
 	public static void main(String[] args) {
 		SpringApplication.run(MedicareBackendApplication.class, args);
 	}
@@ -38,6 +47,9 @@ public class MedicareBackendApplication implements CommandLineRunner {
 		user.setFirst_name("Suraj");
 		user.setLast_name("Anbhule");
 		user.setUser_phone("9689462739");
+
+
+
 
 		Role adminRole = new Role();
 		adminRole.setRole_name("ADMIN");
@@ -65,7 +77,14 @@ public class MedicareBackendApplication implements CommandLineRunner {
 		else {
 
 			try {
-				userService.createUser(user, userRoles);
+
+
+			User user1=userService.createUser(user, userRoles);
+
+			Cart cart = new Cart();
+			cart.setUser(user1);
+			cartService.createCart(cart);
+
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}

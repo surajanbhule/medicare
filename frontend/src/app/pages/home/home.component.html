@@ -1,1 +1,60 @@
-<h1 class="text-center">Welcome to Medicare App</h1>
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-md-3">
+            <mat-card class="mt-2">
+                <div matSubheader>Categories</div>
+                <mat-action-list>
+                    <button mat-list-item 
+                            routerLink="/home/0">All Products</button>
+                    <mat-divider></mat-divider>
+                    <button mat-list-item class="menu" 
+                            *ngFor="let c of categories"
+                            [routerLink]="'/home/'+c.id">
+                            {{c.category_name}}
+                    </button>
+
+                </mat-action-list>
+            </mat-card>
+        </div>
+
+        <div class="col-md-9">
+        
+            <mat-grid-list class="mt-2 " cols="3" rowHeight="1:1" >
+                <mat-grid-tile *ngFor="let p of products">
+                    <mat-card >
+                        <!-- <span class="discount" *ngIf="p.product_discount" matTooltip="discount">
+                            <mat-icon color="warn">discount </mat-icon>{{p.product_discount/100|percent}} off
+                        </span> -->
+                        <mat-card-header class="text-center">
+                            <img [src]="p.productImages[0].url" alt="" width="160px" height="160px">
+                        </mat-card-header>
+                        <mat-card-content class="text-center">
+                            <mat-card-subtitle >
+                                {{p.product_name|productTitle}}
+                                <span *ngIf="p.product_name.length >= 35" [matTooltip]="p.product_name">...</span>
+                            </mat-card-subtitle>
+
+                            <div matLine>
+                                Price: {{p.product_selling_price|currency:'INR'}} <s *ngIf="p.product_selling_price != p.product_price">{{p.product_price|currency:'INR'}}</s>
+                            </div>
+                        </mat-card-content>
+                        <mat-card-actions class="text-center">
+                            <button mat-button color="primary" (click)="addToCart(p)" 
+                                    *ngIf="!productInCart(p.id)">
+                                <mat-icon>add_shopping_cart</mat-icon>
+                                
+                                Add To Cart
+                            </button>
+                            <button mat-flat-button class="cart" (click)="gotoCart()"
+                                    *ngIf="productInCart(p.id)" >
+                                <mat-icon class="cart">check</mat-icon>
+                                Go To Cart
+                            </button>
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
+        
+        </div>
+    </div>
+</div>

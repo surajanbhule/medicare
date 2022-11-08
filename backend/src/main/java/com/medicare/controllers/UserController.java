@@ -1,8 +1,9 @@
 package com.medicare.controllers;
 
-import com.medicare.models.Role;
-import com.medicare.models.User;
-import com.medicare.models.UserRole;
+import com.medicare.models.*;
+import com.medicare.repositories.CartRepository;
+import com.medicare.repositories.ProductRepository;
+import com.medicare.services.CartService;
 import com.medicare.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,15 @@ public class UserController {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private CartService cartService;
 
     @PostMapping("/")
     public User addUser(@RequestBody User user) throws Exception {
@@ -47,6 +57,11 @@ public class UserController {
         return userService.getUserByUsername(username);
     }
 
+    @GetMapping("/")
+    public Set<User> getUsers(){
+        return userService.getUsers();
+    }
+
     @DeleteMapping("/{user_id}")
     public void deleteUser(@PathVariable("user_id")Long user_id){
          userService.deleteUser(user_id);
@@ -55,6 +70,29 @@ public class UserController {
     @PutMapping("/")
     public User updateUser(@RequestBody User user)  {
         return userService.updateUser(user);
+    }
+
+    @PostMapping("/cart/{cart_id}")
+    public Product addToCart(@PathVariable("cart_id") Long cart_id,@RequestBody Product product){
+        System.out.println("Add To Cart "+cart_id);
+        Cart cart = cartRepository.findById(cart_id).get();
+        System.out.println(cart.getId());
+        Product Iproduct = productRepository.findById(product.getId()).get();
+        cart.getProducts().add(Iproduct);
+        cartRepository.save(cart);
+        return product;
+    }
+
+    @GetMapping("/cart/{user_id}")
+    public Cart getCartByUser(@PathVariable("user_id")Long user_id){
+        User user = userService.getUserById(user_id);
+        Cart cart = cartRepository.findCartByUser(user);
+        return cart;
+    }
+
+    @DeleteMapping("/cart/{cart_id}/{product_id}")
+    public void deleteProduct(@PathVariable("cart_id")Long cart_id,@PathVariable("product_id")Long product_id){
+         cartService.deleteProductFromCart(cart_id,product_id);
     }
 
 }

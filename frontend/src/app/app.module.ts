@@ -29,6 +29,12 @@ import { ViewProductComponent } from './pages/admin/view-product/view-product.co
 import { UpdateProductComponent } from './pages/admin/update-product/update-product.component';
 import { NgxUiLoaderBlurredDirective, NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
 import { ViewProductImagesComponent } from './pages/admin/view-product-images/view-product-images.component';
+import { ViewUsersComponent } from './pages/admin/view-users/view-users.component';
+import { ProductTitlePipe } from './pipe/product-title.pipe';
+import { ViewCartComponent } from './pages/user/view-cart/view-cart.component';
+import { OrderComponent } from './pages/user/order/order.component';
+
+
 
 
 
@@ -55,6 +61,11 @@ import { ViewProductImagesComponent } from './pages/admin/view-product-images/vi
     ViewProductComponent,
     UpdateProductComponent,
     ViewProductImagesComponent,
+    ViewUsersComponent,
+    ProductTitlePipe,
+    ViewCartComponent,
+    OrderComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -63,6 +74,7 @@ import { ViewProductImagesComponent } from './pages/admin/view-product-images/vi
     RouterModule,
     MaterialModule,
     FormsModule,
+    
     HttpClientModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule.forRoot({

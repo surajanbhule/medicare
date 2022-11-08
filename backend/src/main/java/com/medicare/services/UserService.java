@@ -11,7 +11,11 @@ public interface UserService {
 
     public User getUserByUsername(String username);
 
+    public User getUserById(Long user_id);
+
     public void deleteUser(Long user_id);
 
     public User updateUser(User updatedUser);
+
+    public Set<User> getUsers();
 }

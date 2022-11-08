@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+}
+
+.quantity-btn-add{
+    font-size:xx-large;
+    color: green;
+    cursor: pointer;   
+}
+
+.quantity-btn-minus {
+    font-size: xx-large;
+    letter-spacing: -3px;
+    color: red;
+    cursor: pointer;
+}
+
+.quantity_number{
+    font-size: x-large;
+    text-align: center;
+}
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+}
+
+.mat-form-field {
+    margin-top: 16px;
+}

@@ -9,6 +9,7 @@ import { UpdateCategoryComponent } from './pages/admin/update-category/update-ca
 import { UpdateProductComponent } from './pages/admin/update-product/update-product.component';
 import { ViewProductImagesComponent } from './pages/admin/view-product-images/view-product-images.component';
 import { ViewProductComponent } from './pages/admin/view-product/view-product.component';
+import { ViewUsersComponent } from './pages/admin/view-users/view-users.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -26,78 +27,86 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path:'login',
-    component:LoginComponent,
+    path: 'login',
+    component: LoginComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: '',
+    redirectTo: 'home/0',
     pathMatch:'full'
   },
   {
-    path:'',
-    component:HomeComponent,
-    pathMatch:'full'
+    path: 'home/:cat_id',
+    component: HomeComponent,
   },
   {
-    path:'admin',
-    component:AdminDashboardComponent,
-    canActivate:[AdminGuard],
-    children:[
+    
+    path: 'admin',
+    component: AdminDashboardComponent,
+    canActivate: [AdminGuard],
+    children: [
       {
-        path:'profile',
-        component:ProfileComponent
+        path: 'profile',
+        component: ProfileComponent,
       },
       {
-        path:'',
-        component:AdminHomeComponent
+        path: '',
+        component: AdminHomeComponent,
       },
       {
-        path:'view-categories',
-        component:CategoryListComponent
+        path: 'view-categories',
+        component: CategoryListComponent,
       },
       {
-        path:'add-category',
-        component:AddCategoryComponent
+        path: 'add-category',
+        component: AddCategoryComponent,
       },
       {
-        path:'update-category/:cat_id',
-        component:UpdateCategoryComponent
+        path: 'update-category/:cat_id',
+        component: UpdateCategoryComponent,
       },
       {
-        path:'view-products',
-        component:ViewProductComponent
+        path: 'view-products',
+        component: ViewProductComponent,
       },
       {
-        path:'add-product',
-        component:AddProductComponent
+        path: 'add-product',
+        component: AddProductComponent,
       },
       {
-        path:'update-product/:product_id',
-        component:UpdateProductComponent
+        path: 'update-product/:product_id',
+        component: UpdateProductComponent,
       },
       {
-        path:'view-images/:product_id',
-        component:ViewProductImagesComponent
-      }
-    ]
+        path: 'view-images/:product_id',
+        component: ViewProductImagesComponent,
+      },
+      {
+        path: 'view-users',
+        component: ViewUsersComponent,
+      },
+    ],
   },
   {
-    path:'user-dashboard',
-    component:UserDashboardComponent,
-    canActivate:[NormalGuard],
-    children:[
+    path: 'user-dashboard',
+    component: UserDashboardComponent,
+    canActivate: [NormalGuard],
+    children: [
       {
-        path:'',
-        component:ProfileComponent
+        path: '',
+        component: ProfileComponent,
       },
       {
-        path:'address',
-        component:UserAddressComponent
+        path: 'address',
+        component: UserAddressComponent,
       },
       {
-        path:'orders',
-        component:UserOrdersComponent
-      }
-    ]
-  }
-
+        path: 'orders',
+        component: UserOrdersComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
