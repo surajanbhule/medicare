@@ -1,3 +1,24 @@
 <mat-card class="mt-2"> 
-    <h1>User Address Appear Here</h1>
+        <h1 matSubheader>Your Address List</h1>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" routerLink="/user-dashboard/add-address">
+                <mat-icon color="accent">add_circle</mat-icon> New Address
+            </button>
+        </mat-card-actions>
+
+        <mat-list>
+            <mat-list-item *ngFor="let a of address">
+                <h4 mat-line>{{a.street}} , </h4>
+                <h4 mat-line>{{a.city}} , </h4>
+                <h4 mat-line>Near {{a.landmark}} , </h4>
+                <h4 mat-line>{{a.pincode}}  </h4>
+                
+                <button mat-icon-button (click)="deleteAddress(a.id)">
+                    <mat-icon color="warn">delete</mat-icon>
+                </button>
+                <button mat-icon-button [routerLink]="'/user-dashboard/update-address/'+a.id">
+                    <mat-icon color="primary" >edit</mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-list>
 </mat-card>

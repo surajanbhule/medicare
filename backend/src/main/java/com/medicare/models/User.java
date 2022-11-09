@@ -1,6 +1,8 @@
 package com.medicare.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.medicare.config.CustomAuthorityDeserializer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -33,6 +35,8 @@ public class User implements UserDetails {
 
     public User() {
     }
+
+
 
     public Long getId() {
         return id;
@@ -107,7 +111,6 @@ public class User implements UserDetails {
     }
 
 
-
     @Override
     public String toString() {
         return "User{" +
@@ -119,9 +122,11 @@ public class User implements UserDetails {
                 ", user_email='" + user_email + '\'' +
                 ", user_phone='" + user_phone + '\'' +
                 ", enabled=" + enabled +
+                ", userRoles=" + userRoles +
                 '}';
     }
 
+    @JsonDeserialize(using = CustomAuthorityDeserializer.class)
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 

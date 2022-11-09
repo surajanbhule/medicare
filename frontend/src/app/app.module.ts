@@ -33,6 +33,9 @@ import { ViewUsersComponent } from './pages/admin/view-users/view-users.componen
 import { ProductTitlePipe } from './pipe/product-title.pipe';
 import { ViewCartComponent } from './pages/user/view-cart/view-cart.component';
 import { OrderComponent } from './pages/user/order/order.component';
+import { AddAddressComponent } from './pages/user/add-address/add-address.component';
+import { UpdateAddressComponent } from './pages/user/update-address/update-address.component';
+import { ViewUserAddressComponent } from './pages/user/view-user-address/view-user-address.component';
 
 
 
@@ -65,6 +68,9 @@ import { OrderComponent } from './pages/user/order/order.component';
     ProductTitlePipe,
     ViewCartComponent,
     OrderComponent,
+    AddAddressComponent,
+    UpdateAddressComponent,
+    ViewUserAddressComponent,
     
   ],
   imports: [

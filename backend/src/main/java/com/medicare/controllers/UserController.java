@@ -3,10 +3,10 @@ package com.medicare.controllers;
 import com.medicare.models.*;
 import com.medicare.repositories.CartRepository;
 import com.medicare.repositories.ProductRepository;
+import com.medicare.services.AddressService;
 import com.medicare.services.CartService;
 import com.medicare.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +32,9 @@ public class UserController {
 
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private AddressService addressService;
 
     @PostMapping("/")
     public User addUser(@RequestBody User user) throws Exception {
@@ -93,6 +96,35 @@ public class UserController {
     @DeleteMapping("/cart/{cart_id}/{product_id}")
     public void deleteProduct(@PathVariable("cart_id")Long cart_id,@PathVariable("product_id")Long product_id){
          cartService.deleteProductFromCart(cart_id,product_id);
+    }
+
+    //Address Endpoints
+    @PostMapping("/address")
+    public Address addAddress(@RequestBody Address address){
+
+        return addressService.addAddress(address);
+    }
+
+    @PutMapping("/address")
+    public Address updateAddress(@RequestBody Address address){
+        System.out.println(address.getUser());
+        return addressService.updateAddress(address);
+    }
+
+    @GetMapping("/addresses/{user_id}")
+    public Set<Address> getAddressesOfUser(@PathVariable("user_id") Long user_id){
+        User user = userService.getUserById(user_id);
+       return addressService.getAddressesOfUser(user);
+    }
+
+    @GetMapping("/address/{address_id}")
+    public Address getAddress(@PathVariable("address_id") Long address_id){
+        return addressService.getAddress(address_id);
+    }
+
+    @DeleteMapping("/delete-address/{address_id}")
+    public void deleteAddress(@PathVariable("address_id") Long address_id){
+         addressService.deleteAddress(address_id);
     }
 
 }

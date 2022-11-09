@@ -1,0 +1,45 @@
+<mat-card class="mt-2">
+    <h1 matSubheader>Update Address</h1>
+    
+    <mat-card-content>
+
+        <form (ngSubmit)="updateAddress()">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Enter Street</mat-label>
+                        <textarea matInput placeholder="Street" [(ngModel)]="address.street" name="street" required
+                            rows="4" maxlength="100">
+                        </textarea>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Enter City Name</mat-label>
+                        <input matInput placeholder="City Name " [(ngModel)]="address.city" name="city_name" required />
+                    </mat-form-field>
+
+
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Enter Nearby Landmark</mat-label>
+                        <input matInput placeholder="Landmark " [(ngModel)]="address.landmark" name="landmark" required
+                            type="text" />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Enter Pincode</mat-label>
+                        <input matInput placeholder="Pincode " [(ngModel)]="address.pincode" name="pincode" required
+                            type="number" />
+                    </mat-form-field>
+                    <div class="container text-center mt-2">
+                        <button type="submit" mat-raised-button color="primary">
+                            Update Address
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </mat-card-content>
+</mat-card>

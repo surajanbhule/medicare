@@ -14,6 +14,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AddAddressComponent } from './pages/user/add-address/add-address.component';
+import { UpdateAddressComponent } from './pages/user/update-address/update-address.component';
 import { UserAddressComponent } from './pages/user/user-address/user-address.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { UserOrdersComponent } from './pages/user/user-orders/user-orders.component';
@@ -105,6 +107,14 @@ const routes: Routes = [
         path: 'orders',
         component: UserOrdersComponent,
       },
+      {
+        path:'add-address',
+        component:AddAddressComponent
+      },
+      {
+        path:'update-address/:address_id',
+        component:UpdateAddressComponent
+      }
     ],
   },
 ];
