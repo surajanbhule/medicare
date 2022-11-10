@@ -31,8 +31,15 @@
 
         <mat-divider></mat-divider>
 
-        <button mat-list-item routerLink="/admin/profile">
-            <mat-icon mat-list-icon>rule_sharp</mat-icon> Pending Orders
+        <button mat-list-item 
+                routerLink="/admin/view-pending-orders">
+
+            <mat-icon mat-list-icon>rule_sharp</mat-icon> 
+            Pending Orders 
+            <span class="ms-5"
+                  [matBadge]="orders.length"
+                  matBadgeColor="warn"
+                  matBadgePosition="above after"></span>
         </button>
 
          <mat-divider></mat-divider>

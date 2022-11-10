@@ -5,3 +5,7 @@
 .mat-form-field {
     margin-top: 16px;
 }
+
+.example-margin {
+    margin: 0 12px;
+}

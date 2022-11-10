@@ -16,7 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatStepperModule } from '@angular/material/stepper';
-import { FormBuilder, Validators } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 
@@ -40,6 +41,8 @@ import { FormBuilder, Validators } from '@angular/forms';
     MatTableModule,
     MatBadgeModule,
     MatStepperModule,
+    MatCheckboxModule,
+    MatRadioModule
   
   ]
 })

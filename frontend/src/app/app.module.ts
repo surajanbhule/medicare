@@ -9,7 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { Route, RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from './material/material.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component'
 import { AuthInterceptor } from './services/auth.interceptor';
@@ -36,6 +36,7 @@ import { OrderComponent } from './pages/user/order/order.component';
 import { AddAddressComponent } from './pages/user/add-address/add-address.component';
 import { UpdateAddressComponent } from './pages/user/update-address/update-address.component';
 import { ViewUserAddressComponent } from './pages/user/view-user-address/view-user-address.component';
+import { PendingOrdersComponent } from './pages/admin/pending-orders/pending-orders.component';
 
 
 
@@ -71,6 +72,7 @@ import { ViewUserAddressComponent } from './pages/user/view-user-address/view-us
     AddAddressComponent,
     UpdateAddressComponent,
     ViewUserAddressComponent,
+    PendingOrdersComponent,
     
   ],
   imports: [
@@ -80,7 +82,7 @@ import { ViewUserAddressComponent } from './pages/user/view-user-address/view-us
     RouterModule,
     MaterialModule,
     FormsModule,
-    
+    ReactiveFormsModule, 
     HttpClientModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule.forRoot({

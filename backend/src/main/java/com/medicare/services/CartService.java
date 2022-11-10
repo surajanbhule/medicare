@@ -14,7 +14,7 @@ public interface CartService {
     public void deleteCart(Long cart_id);
 
     public void deleteProductFromCart(Long cart_id,Long product_id);
-
+    public void deleteProductsFromCart(Long cart_id);
 
 
 

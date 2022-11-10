@@ -2,29 +2,126 @@
     <mat-icon>close</mat-icon>
 </button>
 
-<mat-stepper [labelPosition]="'bottom'">
-    <mat-step editable="false" completed="true" >
-       <ng-template matStepLabel>Address</ng-template>
-       
+<mat-stepper linear [labelPosition]="'bottom'">
 
-        <button mat-button matStepperNext >Next</button>
+    <mat-step [completed]="false"
+              [stepControl]="firstFormGroup">
+       <ng-template matStepLabel>Address</ng-template>
+
+    <mat-card >
+        <h1 matSubheader>Your Address List</h1>
+        <mat-card-actions>
+            <button mat-raised-button 
+                    color="primary"
+                    (click)="addAddress()" 
+                    mat-dialog-close>
+                <mat-icon color="accent">add_circle</mat-icon> New Address
+            </button>
+            {{address_id|json}}
+        </mat-card-actions>
+        <form [formGroup]="firstFormGroup">
+        
+        <mat-list *ngIf="address.length">
+            <mat-radio-group formControlName="firstCtrl" name="address" required >
+                <mat-radio-button requied *ngFor="let a of address" (change)="addressChanged(a.id)"   [value]="a.id">
+                   
+                        <mat-list-item>
+                            <h4 mat-line>{{a.street}} , </h4>
+                            <h4 mat-line>{{a.city}} , </h4>
+                            <h4 mat-line>Near {{a.landmark}} , </h4>
+                            <h4 mat-line>{{a.pincode}} </h4>
+                    
+                            <button mat-icon-button mat-dialog-close (click)="updateAddress(a.id)">
+                                <mat-icon color="primary">edit</mat-icon>
+                            </button>
+                        </mat-list-item>
+                    
+                </mat-radio-button>
+               
+            </mat-radio-group>
+        </mat-list>         
+    </form>
+        <h3 mat-line *ngIf="! address.length">You don't have any address</h3>
+    </mat-card>
+
+    
+
+
+       <div class="container text-center mt-3">
+        <button mat-raised-button color="primary" matStepperNext>
+            Payment Method <mat-icon>arrow_forward</mat-icon>
+        </button>
+       </div> 
     </mat-step>
 
-    <mat-step>
+
+    <mat-step  [completed]="false"
+              [stepControl]="secondFormGroup"
+              >
 
         <ng-template matStepLabel>Payment</ng-template>
         
-        <button mat-button matStepperNext>Next</button>
+        <mat-card >
+            <h1 matSubheader>Choose Payment Method</h1>
+            
+            <form [formGroup]="secondFormGroup">
+                <div class="text-center">
+                <mat-list >
+                    
+                    <mat-radio-group class="pay ms-2" formControlName="firstCtrl" name="payment" required>
+                     
+                        <mat-radio-button requied (change)="paymentDone(1)" [value]="1">
+        
+                            <mat-list-item>
+                              Cash On Delivery
+                            </mat-list-item>
+        
+                        </mat-radio-button>
+
+                        <mat-radio-button requied (change)="paymentDone(2)" [value]="2">
+                        
+                            <mat-list-item>
+                                Card Payment
+                            </mat-list-item>
+                        
+                        </mat-radio-button>
+
+                        <mat-radio-button requied (change)="paymentDone(3)" [value]="3">
+                        
+                            <mat-list-item>
+                                UPI Payment
+                            </mat-list-item>
+                        
+                        </mat-radio-button>
+        
+                    </mat-radio-group>
+                    <h1 mat-line>Dummy Payment Gateway</h1>
+                </mat-list>
+                </div>
+            </form>
+            
+        </mat-card>
+    
+        <div class="container text-center mt-3">
+            <button mat-raised-button color="primary"
+                    (click)="placeOrder()"
+                    matStepperNext>
+                Continue <mat-icon>arrow_forward</mat-icon>
+            </button>
+        </div>
     
     </mat-step>
+
+
+
 
     <mat-step class="text-center">
 
         <ng-template matStepLabel>Order Placed</ng-template>
         
         <div class="container text-center">
-        <h1><img src="./../../../../assets/checkicon.gif" width="50px" alt="gif not supported" >
-            Order Confirmed, Delivery expected soon</h1>
+        <h1><img src="./../../../../assets/checkicon.gif" width="75px" alt="gif not supported" >
+            Order Confirmed, Delivery expected in 72 Hours</h1>
             <button mat-button mat-dialog-close>close</button>
         </div>
         

@@ -5,6 +5,7 @@ import com.medicare.repositories.CartRepository;
 import com.medicare.repositories.ProductRepository;
 import com.medicare.services.AddressService;
 import com.medicare.services.CartService;
+import com.medicare.services.OrderService;
 import com.medicare.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,6 +36,9 @@ public class UserController {
 
     @Autowired
     private AddressService addressService;
+
+    @Autowired
+    private OrderService orderService;
 
     @PostMapping("/")
     public User addUser(@RequestBody User user) throws Exception {
@@ -98,6 +102,11 @@ public class UserController {
          cartService.deleteProductFromCart(cart_id,product_id);
     }
 
+    @DeleteMapping("/cart/{cart_id}")
+    public void deleteProducts(@PathVariable("cart_id")Long cart_id){
+        cartService.deleteProductsFromCart(cart_id);
+    }
+
     //Address Endpoints
     @PostMapping("/address")
     public Address addAddress(@RequestBody Address address){
@@ -127,4 +136,24 @@ public class UserController {
          addressService.deleteAddress(address_id);
     }
 
+    @PostMapping("/order")
+    public UserOrders addOrder(@RequestBody UserOrders order){
+        return orderService.createOrder(order);
+    }
+
+    @GetMapping("/order/{user_id}")
+    public Set<UserOrders> getOrders(@PathVariable("user_id") Long user_id){
+        User user = userService.getUserById(user_id);
+        return orderService.getOrders(user);
+    }
+
+    @GetMapping("/order-product/{order_id}")
+    public Set<Product> getProductsOfOrder(@PathVariable("order_id") Long order_id){
+        return orderService.getProducts(order_id);
+    }
+
+    @GetMapping("/orders")
+    public Set<UserOrders> getAllfOrder(){
+        return orderService.getAllPendingOrders();
+    }
 }

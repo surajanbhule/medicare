@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-admin-sidebar',
@@ -7,9 +8,15 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./admin-sidebar.component.css'],
 })
 export class AdminSidebarComponent implements OnInit {
-  constructor(private loginService:LoginService) {}
+  orders:any=[]
+  constructor(private loginService:LoginService,
+              private userService:UserService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+     this.userService.getPendingOrder().subscribe(
+      (data:any)=>{ this.orders = data; })
+  }
 
   logout() {
     this.loginService.logout();

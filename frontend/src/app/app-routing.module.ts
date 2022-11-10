@@ -5,6 +5,7 @@ import { AddProductComponent } from './pages/admin/add-product/add-product.compo
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
 import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
+import { PendingOrdersComponent } from './pages/admin/pending-orders/pending-orders.component';
 import { UpdateCategoryComponent } from './pages/admin/update-category/update-category.component';
 import { UpdateProductComponent } from './pages/admin/update-product/update-product.component';
 import { ViewProductImagesComponent } from './pages/admin/view-product-images/view-product-images.component';
@@ -36,14 +37,13 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'home/0',
-    pathMatch:'full'
+    pathMatch: 'full',
   },
   {
     path: 'home/:cat_id',
     component: HomeComponent,
   },
   {
-    
     path: 'admin',
     component: AdminDashboardComponent,
     canActivate: [AdminGuard],
@@ -88,6 +88,10 @@ const routes: Routes = [
         path: 'view-users',
         component: ViewUsersComponent,
       },
+      {
+        path: 'view-pending-orders',
+        component: PendingOrdersComponent,
+      },
     ],
   },
   {
@@ -108,13 +112,13 @@ const routes: Routes = [
         component: UserOrdersComponent,
       },
       {
-        path:'add-address',
-        component:AddAddressComponent
+        path: 'add-address',
+        component: AddAddressComponent,
       },
       {
-        path:'update-address/:address_id',
-        component:UpdateAddressComponent
-      }
+        path: 'update-address/:address_id',
+        component: UpdateAddressComponent,
+      },
     ],
   },
 ];

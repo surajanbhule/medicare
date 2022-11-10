@@ -125,5 +125,7 @@ export class AddProductComponent implements OnInit {
 
  removeImage(i:any){
     this.product.productImages.splice(i,1)
+    this.numberOfImages--;
+
  }
 }

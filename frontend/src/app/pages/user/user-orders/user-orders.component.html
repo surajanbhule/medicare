@@ -1,3 +1,33 @@
-<mat-card class="mt-2"> 
-    <h1>User Orders Info Appear Here</h1>
-</mat-card>
+<div class="mt-2">
+    <mat-card><h1 class="text-center" matSubheader>All Orders</h1></mat-card>
+
+   
+    <mat-card class="mt-1" *ngFor="let o of orders">
+    <button mat-button color="warn" *ngIf="o.order_status != 'COMPLETED'"> <mat-icon>send</mat-icon> Ongoing</button>
+    <button mat-button color="basic" *ngIf="o.order_status == 'COMPLETED'">
+        <mat-icon>download_done</mat-icon> Deliverd
+    </button>
+        <mat-card-header class="mt-1">
+            <mat-card-title>Delivery Expected : {{o.order_date}}</mat-card-title>
+            <mat-card-subtitle>{{o.order_status}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="o.payment_status == 'Cash on delivery'">Payment : {{o.payment_status}}</mat-card-subtitle> 
+            <mat-card-subtitle *ngIf="o.payment_status != 'Cash on delivery'" >
+                Payment : <img src="../../../../assets/checkicon.gif" width="25px" alt=""> Paid
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-list>
+                <mat-list-item *ngFor="let p of o.product_list">
+                    <img mat-list-avatar [src]="p.productImages[0].url" alt=""  >
+                    <div matLine>{{p.product_name}}</div>
+                    <div matLine>Payable Amount : {{p.product_selling_price | currency:'INR' }}</div>
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
+
+</div>
+    
+    
+    
+

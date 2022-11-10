@@ -12,13 +12,17 @@
   Cart <mat-icon [matBadge]="products_in_cart"  class="demo-section" matBadgeColor="accent">shopping_cart</mat-icon>
 </button>
 
-<a    *ngIf="isLoggedIn && user"
+<button color="basic" *ngIf="isLoggedIn && user && isAdmin"
           mat-button
           (click)="openDashboard()">
-    <img src="./../../../assets/account_icon.png" alt="" 
-        width="35px" 
-        matTooltip="Go To Dashboard">    
-</a>
+    <mat-icon matTooltip="Go To Dashboard">admin_panel_settings</mat-icon>
+    Dashboard      
+</button>
+
+<button color="basic"  *ngIf="isLoggedIn && user && isNormal" mat-button (click)="openDashboard()">
+  <mat-icon>account_circle</mat-icon>
+  {{user.first_name}} {{user.last_name}}
+</button>
 
 
 
