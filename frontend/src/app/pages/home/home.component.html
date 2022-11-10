@@ -1,60 +1,73 @@
-<div class="container-fluid mt-2">
+<div class="container-fluid showcase mt-3">
     <div class="row">
-        <div class="col-md-3">
-            <mat-card class="mt-2">
+
+        <div class="col-md-2 categories categories  mt-3" >
+           
                 <div matSubheader>Categories</div>
-                <mat-action-list>
-                    <button mat-list-item 
-                            routerLink="/home/0">All Products</button>
+                <mat-action-list class="ms-2">
+                    <button mat-list-item routerLink="/home/0">All Products</button>
                     <mat-divider></mat-divider>
-                    <button mat-list-item class="menu" 
-                            *ngFor="let c of categories"
-                            [routerLink]="'/home/'+c.id">
-                            {{c.category_name}}
+                    <button mat-list-item class="menu" *ngFor="let c of categories" [routerLink]="'/home/'+c.id">
+                        {{c.category_name}}
                     </button>
-
+            
                 </mat-action-list>
-            </mat-card>
+           
         </div>
 
-        <div class="col-md-9">
-        
-            <mat-grid-list class="mt-2 " cols="3" rowHeight="1:1" >
-                <mat-grid-tile *ngFor="let p of products">
-                    <mat-card >
-                        <!-- <span class="discount" *ngIf="p.product_discount" matTooltip="discount">
-                            <mat-icon color="warn">discount </mat-icon>{{p.product_discount/100|percent}} off
-                        </span> -->
-                        <mat-card-header class="text-center">
-                            <img [src]="p.productImages[0].url" alt="" width="160px" height="160px">
-                        </mat-card-header>
-                        <mat-card-content class="text-center">
-                            <mat-card-subtitle >
-                                {{p.product_name|productTitle}}
-                                <span *ngIf="p.product_name.length >= 35" [matTooltip]="p.product_name">...</span>
-                            </mat-card-subtitle>
-
-                            <div matLine>
-                                Price: {{p.product_selling_price|currency:'INR'}} <s *ngIf="p.product_selling_price != p.product_price">{{p.product_price|currency:'INR'}}</s>
-                            </div>
-                        </mat-card-content>
-                        <mat-card-actions class="text-center">
-                            <button mat-button color="primary" (click)="addToCart(p)" 
-                                    *ngIf="!productInCart(p.id)">
-                                <mat-icon>add_shopping_cart</mat-icon>
+        <div class="col-md-10 mt-3">
+            
+                    <div class="row row-cols-1 row-cols-md-5 ms-5">
+                        <mat-card *ngFor="let p of products" class="ms-2 mt-1" >
+                            <!-- <span class="discount" *ngIf="p.product_discount" matTooltip="discount">
+                                                    <mat-icon color="warn">discount </mat-icon>{{p.product_discount/100|percent}} off
+                                                </span> -->
+                            <mat-card-header class="text-center">
                                 
-                                Add To Cart
-                            </button>
-                            <button mat-flat-button class="cart" (click)="gotoCart()"
-                                    *ngIf="productInCart(p.id)" >
-                                <mat-icon class="cart">check</mat-icon>
-                                Go To Cart
-                            </button>
-                        </mat-card-actions>
-                    </mat-card>
-                </mat-grid-tile>
-            </mat-grid-list>
-        
+                            </mat-card-header>
+                            <mat-card-content class="text-center">
+                                <img [src]="p.productImages[0].url" alt="" width="75px" height="75px">
+                                <mat-card-subtitle class="mt-1">
+                                    {{p.product_name|productTitle}}
+                                    <span *ngIf="p.product_name.length >= 35" [matTooltip]="p.product_name">...</span>
+                                </mat-card-subtitle>
+                        
+                                <div matLine>
+                                    Price: {{p.product_selling_price|currency:'INR'}} 
+                                    <s class="ms-1" *ngIf="p.product_selling_price != p.product_price">{{p.product_price|currency:'INR'}}</s>
+                                </div>
+                            </mat-card-content>
+                            <mat-card-actions class="text-center">
+                                <button mat-button color="primary" (click)="addToCart(p)" *ngIf="!productInCart(p.id)">
+                                    <mat-icon>add_shopping_cart</mat-icon>
+                        
+                                    Add To Cart
+                                </button>
+                                <button mat-flat-button class="cart" (click)="gotoCart()" *ngIf="productInCart(p.id)">
+                                    <mat-icon class="cart">check</mat-icon>
+                                    Go To Cart
+                                </button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+               
+
         </div>
+
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

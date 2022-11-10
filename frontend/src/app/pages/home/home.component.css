@@ -1,11 +1,13 @@
+
 mat-card{
- width: 330px !important;
- height: 330px !important;
+    border: 1.5px solid grey;
 }
 
-mat-grid-tile{
-    border: 1px solid indigo;
-    margin-bottom: 10px;
+
+
+.categories{
+    border: 1.5px solid grey;
+    background: white;
 }
 
 .discount{

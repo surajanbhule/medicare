@@ -8,9 +8,10 @@
         <mat-icon>download_done</mat-icon> Deliverd
     </button>
         <mat-card-header class="mt-1">
-            <mat-card-title>Delivery Expected : {{o.order_date}}</mat-card-title>
+            <mat-card-title>Delivery Expected : {{o.delivery_date}}</mat-card-title>
+            <mat-card-subtitle>Order Placed On :{{o.order_date}}</mat-card-subtitle>
             <mat-card-subtitle>{{o.order_status}}</mat-card-subtitle>
-            <mat-card-subtitle *ngIf="o.payment_status == 'Cash on delivery'">Payment : {{o.payment_status}}</mat-card-subtitle> 
+            <mat-card-subtitle *ngIf="o.payment_status == 'Cash on delivery'">Payment : <img src="../../../../assets/cash.gif" width="25px" alt=""> {{o.payment_status}}</mat-card-subtitle> 
             <mat-card-subtitle *ngIf="o.payment_status != 'Cash on delivery'" >
                 Payment : <img src="../../../../assets/checkicon.gif" width="25px" alt=""> Paid
             </mat-card-subtitle>
