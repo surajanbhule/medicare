@@ -1,6 +1,7 @@
 
 mat-card{
     border: 1.5px solid grey;
+    border-radius: 15px;
 }
 
 
@@ -11,9 +12,11 @@ mat-card{
 }
 
 .discount{
-    position: absolute;
-    top:-50;
-    left: -10;
+ color: green;
+}
+
+.no-discount {
+    color: white;
 }
 
 .menu{
@@ -22,4 +25,26 @@ mat-card{
 
 .cart{
     color: green;
+}
+
+.list-group-item {
+    cursor: pointer;
+}
+
+.cat-btn{
+    
+    color: white;
+    outline: none;
+    border: none;
+    background-color: #757ce8 ;
+
+}
+
+.empty-space{
+    color: white;
+}
+
+.all-cat{
+    color: pink;
+    font-size: large;
 }

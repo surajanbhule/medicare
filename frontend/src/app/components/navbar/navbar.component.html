@@ -8,6 +8,11 @@
   </span>
   <span class="nav-spacer"></span>
 
+      <input type="text" placeholder="Search Products Here..." class="search-input-box">
+      <button mat-raised-button class="search-btn"><mat-icon color="primary">search</mat-icon></button>
+      
+  <span class="nav-spacer"></span>
+
 <button mat-button *ngIf="isLoggedIn && user && products_in_cart" (click)="showCart()" >
   Cart <mat-icon [matBadge]="products_in_cart"  class="demo-section" matBadgeColor="accent">shopping_cart</mat-icon>
 </button>

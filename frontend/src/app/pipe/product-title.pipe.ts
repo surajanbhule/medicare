@@ -8,7 +8,7 @@ export class ProductTitlePipe implements PipeTransform {
   transform(value: string): string {
     if(value.length>=40){
      return value.substring(0, 35);
-    }else{
+    }else {
       return value;
     }
      

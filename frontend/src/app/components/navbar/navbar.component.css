@@ -18,5 +18,45 @@
     background-color: white;
 }
 
+input{
+   border: 0.5px solid #3F51B5;
+   flex: 1;
+   border-right: 0px;
+   font-family: Roboto, "Helvetica Neue",sans-serif;
+   font-size: small;
+   border-radius: 10px;
+   border-top-right-radius: 0px;
+   border-bottom-right-radius: 0px;
+   height: 40px;
+   outline: none;
+   
+}
+
+input:focus{
+    border: 0.5px solid #3F51B5;
+    flex: 1;
+    border-right: 0px solid white;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: small;
+    border-radius: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    height: 40px;
+    outline: none;
+}
+
+.search-btn{
+    height: 40px;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    color: white;
+    border: 0.5px solid #3F51B5;
+    border-left: 0px solid white;
+}
+
+
+
+
 
 
