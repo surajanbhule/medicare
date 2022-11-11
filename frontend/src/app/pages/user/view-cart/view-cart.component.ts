@@ -82,9 +82,22 @@ export class ViewCartComponent implements OnInit {
   }
 
   openOrder() {
+    if(this.products_in_cart.length>0){
     this.cartDialog.open(OrderComponent, {
+      data:this.getTotalCost(),
       height: '600px',
       width: '1200px',
     });
+  }else{
+    this.snack.open('No products in cart','OK');
+  }
+  }
+
+  getTotalCost(){
+    let total=0;
+    for(let p of this.products_in_cart){
+      total= total + p.product_selling_price;
+    }
+    return total;
   }
 }

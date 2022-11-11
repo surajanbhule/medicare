@@ -39,4 +39,9 @@ public class CategoryServiceImpl implements CategoryService {
     public Set<Category> getAllCategories() {
         return new HashSet<>(categoryRepository.findAll());
     }
+
+    @Override
+    public Set<Category> getPopularCategories() {
+        return categoryRepository.findByPopular(true);
+    }
 }

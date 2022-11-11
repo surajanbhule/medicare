@@ -15,6 +15,7 @@ public class Category {
     private Long id;
     private String category_name;
     private String category_description;
+    private Boolean popular;
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Product> products = new HashSet<>();
@@ -59,5 +60,13 @@ public class Category {
 
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    public Boolean getPopular() {
+        return popular;
+    }
+
+    public void setPopular(Boolean popular) {
+        this.popular = popular;
     }
 }

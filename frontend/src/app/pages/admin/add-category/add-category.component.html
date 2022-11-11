@@ -28,11 +28,11 @@
           </textarea>
         </mat-form-field>
 
-         
+          <mat-slide-toggle name="popular" class="example-margin"  [(ngModel)]="category.isPopular" >
+            Popular Category
+          </mat-slide-toggle>
 
-        
-
-        <div class="container">
+        <div class="container mt-5">
 
             <button type="submit" mat-raised-button color="primary">Add Category</button>
 

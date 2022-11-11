@@ -9,29 +9,29 @@ import baseUrl from './helper';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  public addProduct(product:FormData){
-    return this.http.post(`${baseUrl}/products/`,product);
+  public addProduct(product: FormData) {
+    return this.http.post(`${baseUrl}/products/`, product);
   }
 
-  public getProducts(){
+  public getProducts() {
     return this.http.get(`${baseUrl}/products/`);
   }
 
-  public getProductsByCategory(cat_id:any){
+  public getProductsByCategory(cat_id: any) {
     console.log(cat_id);
     return this.http.get(`${baseUrl}/categories/product-list/${cat_id}`);
   }
 
-  public deleteProduct(id:any){
+  public deleteProduct(id: any) {
     return this.http.delete(`${baseUrl}/products/${id}`);
   }
 
-  public getProduct(id:any){
+  public getProduct(id: any) {
     return this.http.get(`${baseUrl}/products/${id}`);
   }
 
-  public updateProduct(product:FormData){
-    return this.http.put(`${baseUrl}/products/`,product);
+  public updateProduct(product: FormData) {
+    return this.http.put(`${baseUrl}/products/`, product);
   }
 
   public addCategory(category: any) {
@@ -42,7 +42,11 @@ export class ProductService {
     return this.http.get(`${baseUrl}/categories`);
   }
 
-  public getCategory(id:any) {
+  public getPopularCategories() {
+    return this.http.get(`${baseUrl}/categories/popular`);
+  }
+
+  public getCategory(id: any) {
     return this.http.get(`${baseUrl}/categories/${id}`);
   }
 
@@ -53,6 +57,4 @@ export class ProductService {
   public updateCategory(category: any) {
     return this.http.put(`${baseUrl}/categories`, category);
   }
-
-  
 }

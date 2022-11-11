@@ -38,6 +38,11 @@ public class CategoryController {
         return categoryService.getAllCategories();
     }
 
+    @GetMapping("/popular")
+    public Set<Category> getPopularCategories(){
+        return categoryService.getPopularCategories();
+    }
+
     @GetMapping("/{category_id}")
     public Category getCategory(@PathVariable("category_id") Long category_id){
         return categoryService.getCategory(category_id);

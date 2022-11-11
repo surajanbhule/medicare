@@ -67,8 +67,8 @@ export class NavbarComponent implements OnInit {
 
  public showCart(){
         this.cartDialog.open(ViewCartComponent, {
-          height: '500px',
-          width:  '900px',
+          height: '450px',
+          width:  '1000px',
           position:{
             right:'0',
             top:'0',  

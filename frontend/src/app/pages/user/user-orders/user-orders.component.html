@@ -11,7 +11,8 @@
             <mat-card-title>Delivery Expected : {{o.delivery_date}}</mat-card-title>
             <mat-card-subtitle>Order Placed On :{{o.order_date}}</mat-card-subtitle>
             <mat-card-subtitle>{{o.order_status}}</mat-card-subtitle>
-            <mat-card-subtitle *ngIf="o.payment_status == 'Cash on delivery'">Payment : <img src="../../../../assets/cash.gif" width="25px" alt=""> {{o.payment_status}}</mat-card-subtitle> 
+            <mat-card-subtitle>Total Order Amount: <strong>{{o.total | currency:'INR'}}</strong> </mat-card-subtitle>
+            <mat-card-subtitle *ngIf="o.payment_status == 'Cash on delivery'">Payment : <img src="../../../../assets/cash.gif" width="25px" alt=""> {{o.payment_status}} </mat-card-subtitle> 
             <mat-card-subtitle *ngIf="o.payment_status != 'Cash on delivery'" >
                 Payment : <img src="../../../../assets/checkicon.gif" width="25px" alt=""> Paid
             </mat-card-subtitle>
@@ -21,7 +22,7 @@
                 <mat-list-item *ngFor="let p of o.product_list">
                     <img mat-list-avatar [src]="p.productImages[0].url" alt=""  >
                     <div matLine>{{p.product_name}}</div>
-                    <div matLine>Payable Amount : {{p.product_selling_price | currency:'INR' }}</div>
+                    <div matLine>Price Amount : {{p.product_selling_price | currency:'INR' }}</div>
                 </mat-list-item>
             </mat-list>
         </mat-card-content>

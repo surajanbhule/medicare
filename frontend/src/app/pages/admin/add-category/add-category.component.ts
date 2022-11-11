@@ -12,6 +12,7 @@ export class AddCategoryComponent implements OnInit {
   category = {
     category_name: '',
     category_description: '',
+    isPopular:0,
   };
   constructor(private productService: ProductService,
               private router:Router) {}

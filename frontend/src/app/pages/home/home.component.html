@@ -70,10 +70,10 @@
                                     Price: {{p.product_selling_price|currency:'INR'}} 
                                     <s class="ms-1" *ngIf="p.product_selling_price != p.product_price">{{p.product_price|currency:'INR'}}</s>
                                 </div>
-                                <span class="discount" *ngIf="p.product_discount" matTooltip="discount">
+                                <span class="discount" *ngIf="p.product_discount" >
                                     Upto  {{p.product_discount/100|percent}} off
                                 </span>
-                                <span class="no-discount" *ngIf="! p.product_discount" matTooltip="discount">
+                                <span class="no-discount" *ngIf="! p.product_discount" >
                                     Upto {{p.product_discount/100|percent}} off
                                 </span>
                             </mat-card-content>

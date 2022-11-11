@@ -1,5 +1,6 @@
 table {
     width: 100%;
+    height: 100%;
 }
 
 .quantity-btn-add{
@@ -26,4 +27,17 @@ table {
 
 .mat-form-field {
     margin-top: 16px;
+}
+
+.example-container {
+    height: 270px;
+    overflow: auto;
+}
+
+tr.mat-footer-row {
+    font-weight: bold;
+}
+
+.mat-table-sticky {
+    border-top: 1px solid #e0e0e0;
 }

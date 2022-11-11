@@ -16,4 +16,6 @@ public interface CategoryService {
 
     public Set<Category> getAllCategories();
 
+    public Set<Category> getPopularCategories();
+
 }

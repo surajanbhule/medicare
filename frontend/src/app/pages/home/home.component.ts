@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
       (error) => console.log(error)
     );
 
-    this.productService.getCategories().subscribe(
+    this.productService.getPopularCategories().subscribe(
       (data) => {
         this.categories = data;
       },

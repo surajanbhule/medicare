@@ -10,8 +10,8 @@
 
 
 
-
-<table mat-table [dataSource]="products_in_cart" class="mat-elevation-z8">
+<section  class="example-container mat-elevation-z8" tabindex="0">
+<table  mat-table [dataSource]="products_in_cart" >
 
     <ng-container matColumnDef="image">
         <th mat-header-cell *matHeaderCellDef> 
@@ -20,6 +20,7 @@
         <td mat-cell *matCellDef="let element">
             <img [src]="element.productImages[0].url" alt="" width="75px" height="75px">
         </td>
+        <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="name">
@@ -27,6 +28,7 @@
             Product Name
         </th>
         <td mat-cell *matCellDef="let element">{{element.product_name}}</td>
+        <td mat-footer-cell *matFooterCellDef>Total:</td>
     </ng-container>
 
     <ng-container matColumnDef="price">
@@ -34,6 +36,7 @@
             Price
         </th>
         <td mat-cell *matCellDef="let element">{{element.product_price|currency:'INR'}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="discount">
@@ -41,6 +44,7 @@
             Discount
         </th>
         <td mat-cell *matCellDef="let element">{{element.product_discount/100|percent}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="payable">
@@ -48,6 +52,7 @@
             Payable
         </th>
         <td mat-cell *matCellDef="let element">{{element.product_selling_price|currency:'INR'}}</td>
+        <td mat-footer-cell *matFooterCellDef>  </td>
     </ng-container>
 
     <ng-container matColumnDef="quantity">
@@ -56,6 +61,7 @@
         </th>
         <td mat-cell *matCellDef="let element">   
         </td>
+        <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="action">
@@ -67,19 +73,21 @@
                 <mat-icon color="accent">delete</mat-icon>
             </button>
         </td>
+        <td mat-footer-cell *matFooterCellDef>{{getTotalCost() | currency:'INR'}}</td>
     </ng-container>
 
   
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr  mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
     
     
 </table>
+</section>
 
-
-<div class="container text-center">
-<button class="text-center mt-3 mb-3" mat-raised-button
+<div *ngIf="products_in_cart" class="container text-center">
+<button class="text-center mt-3 mb-1" mat-raised-button
                                       mat-dialog-close 
                                       color="primary"
                                       (click)="openOrder()">

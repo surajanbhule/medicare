@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
@@ -12,17 +13,17 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./order.component.css'],
 })
 export class OrderComponent implements OnInit {
-
-  order={
-    payment_status:'',
-    user:{
-      id:0
+  order = {
+    payment_status: '',
+    total:0,
+    user: {
+      id: 0,
     },
-    address:{
-      id:0
-    }
-  }
-  cart_id=0;
+    address: {
+      id: 0,
+    },
+  };
+  cart_id = 0;
   address: any = [];
   address_id: any;
   payment_id: any;
@@ -41,21 +42,20 @@ export class OrderComponent implements OnInit {
     private snack: MatSnackBar,
     private router: Router,
     private formBuilder: FormBuilder,
-    
+    @Inject(MAT_DIALOG_DATA) public total_bill: any,
   ) {}
 
   ngOnInit(): void {
-
-      this.userService.getCart(this.loginService.getUser().id).subscribe(
-        (data: any) => {
-          console.log(data.id);
-          this.cart_id = data.id;
-          console.log('cart_id' + this.cart_id);
-        },
-        (error) => {
-          this.snack.open('Cart Not Getting');
-        }
-      );
+    this.userService.getCart(this.loginService.getUser().id).subscribe(
+      (data: any) => {
+        console.log(data.id);
+        this.cart_id = data.id;
+        console.log('cart_id' + this.cart_id);
+      },
+      (error) => {
+        this.snack.open('Cart Not Getting');
+      }
+    );
 
     this.userService
       .getAddressesOfUser(this.loginService.getUser().id)
@@ -98,56 +98,50 @@ export class OrderComponent implements OnInit {
   paymentDone(id: number) {
     if (id == 1) {
       this.payment_status = 'Cash on delivery';
-     
     }
 
     if (id == 2) {
       this.payment_status = 'Card Payment';
-      
     }
 
     if (id == 3) {
       this.payment_status = 'Upi Payment';
-      
     }
   }
 
-  placeOrder(){
+  placeOrder() {
     console.log(this.payment_status);
     this.order.payment_status = this.payment_status;
-    if(this.order.payment_status == ''){
-      this.snack.open('Payment Not Done Yet','OK');
+    this.order.total= this.total_bill;
+    if (this.order.payment_status == '') {
+      this.snack.open('Payment Not Done Yet', 'OK');
       return;
     }
-      if (this.address_id == undefined) {
-        this.snack.open('Address No Selected Yet', 'OK');
-        return;
-      }
+    if (this.address_id == undefined) {
+      this.snack.open('Address No Selected Yet', 'OK');
+      return;
+    }
 
-    this.order.address.id=this.address_id;
-    
-    this.order.user.id=this.loginService.getUser().id;
+    this.order.address.id = this.address_id;
+
+    this.order.user.id = this.loginService.getUser().id;
     this.userService.createOrder(this.order).subscribe(
-      (data)=>{
-
+      (data) => {
         this.snack.open('Order Placed Successfully');
-        
-      
 
         this.userService.deleteProductsFromCart(this.cart_id).subscribe(
-          (data)=>{
-            this.snack.open('Cart Cleared','OK')
+          (data) => {
+            this.snack.open('Cart Cleared', 'OK');
             this.userService.cartStatus.next(true);
           },
-          (error)=>{
+          (error) => {
             this.snack.open('Cart Not Cleared', 'OK');
           }
-        )
-
+        );
       },
-      (error)=>{
+      (error) => {
         this.snack.open('Order not placed');
       }
-    )
+    );
   }
 }

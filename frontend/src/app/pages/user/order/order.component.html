@@ -106,7 +106,7 @@
             <button mat-raised-button color="primary"
                     (click)="placeOrder()"
                     matStepperNext>
-                Continue <mat-icon>arrow_forward</mat-icon>
+                Continue <mat-icon >arrow_forward</mat-icon>
             </button>
         </div>
     
@@ -122,7 +122,11 @@
         <div class="container text-center">
         <h1><img src="./../../../../assets/checkicon.gif" width="75px" alt="gif not supported" >
             Order Confirmed, Delivery expected in 72 Hours</h1>
-            <button mat-button mat-dialog-close>close</button>
+            <h3>Total order amount: <img src="./../../../../assets/cash.gif" width="25px" alt="gif not supported">
+                {{total_bill | currency:'INR'}}</h3>
+            <button mat-raised-button mat-dialog-close color="primary" routerLink="/user-dashboard/orders">
+                My Orders
+            </button>
         </div>
         
     
