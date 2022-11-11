@@ -4,8 +4,11 @@
    
     <mat-card class="mt-1" *ngFor="let o of orders">
     <button mat-button color="warn" *ngIf="o.order_status != 'COMPLETED'"> <mat-icon>send</mat-icon> Ongoing</button>
-    <button mat-button color="basic" *ngIf="o.order_status == 'COMPLETED'">
+    <button mat-button color="basic" *ngIf="o.order_status == 'DELIVERED'">
         <mat-icon>download_done</mat-icon> Deliverd
+    </button>
+    <button mat-button class="on-the-way-label" *ngIf="o.order_status == 'COMPLETED'">
+        <mat-icon>local_shipping</mat-icon> On The Way
     </button>
         <mat-card-header class="mt-1">
             <mat-card-title>Delivery Expected : {{o.delivery_date}}</mat-card-title>

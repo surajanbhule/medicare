@@ -75,4 +75,17 @@ public class OrderServiceImpl implements OrderService {
     public Set<Product> getProducts(Long user_order_id) {
         return orderRepository.findById(user_order_id).get().getProducts();
     }
+
+    @Override
+    public UserOrders completeOrder(Long order_id) {
+         UserOrders userOrder = orderRepository.findById(order_id).get();
+         System.out.println("Order:"+userOrder);
+         userOrder.setOrder_status("COMPLETED");
+         Date date = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 3 );
+         userOrder.setDelivery_date(date);
+         userOrder.setPending(false);
+
+         orderRepository.save(userOrder);
+        return userOrder;
+    }
 }

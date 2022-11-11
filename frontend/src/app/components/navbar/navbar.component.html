@@ -1,4 +1,7 @@
-<mat-toolbar color="primary" class="m-auto" sticky>
+<mat-toolbar color="primary" 
+             class="m-auto">
+
+
   <span class="app-title-color" routerLink="" mat-card-title > 
     <img src="./../../../assets/logo.jpg" alt="" 
         width="30px" 
@@ -13,8 +16,14 @@
       
   <span class="nav-spacer"></span>
 
+  
+
 <button mat-button *ngIf="isLoggedIn && user && products_in_cart" (click)="showCart()" >
   Cart <mat-icon [matBadge]="products_in_cart"  class="demo-section" matBadgeColor="accent">shopping_cart</mat-icon>
+</button>
+
+<button color="basic" *ngIf="isLoggedIn && user && isNormal" mat-button (click)="openNotifications()">
+  <mat-icon matBadge="1" matBadgeColor="accent" matBadgeOverlap="true">notifications</mat-icon>
 </button>
 
 <button color="basic" *ngIf="isLoggedIn && user && isAdmin"

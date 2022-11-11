@@ -82,6 +82,7 @@ export class ViewCartComponent implements OnInit {
   }
 
   openOrder() {
+    console.log(this.getTotalCost());
     if(this.products_in_cart.length>0){
     this.cartDialog.open(OrderComponent, {
       data:this.getTotalCost(),

@@ -19,7 +19,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { MatAccordion, MatExpansionModule, MAT_ACCORDION } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -44,7 +44,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatStepperModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatExpansionModule
   
   ]
 })

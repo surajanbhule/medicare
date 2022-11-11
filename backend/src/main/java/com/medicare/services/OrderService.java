@@ -17,4 +17,6 @@ public interface OrderService {
     public Set<UserOrders> getAllPendingOrders();
 
     public Set<Product> getProducts(Long user_order_id);
+
+    public UserOrders completeOrder(Long order_id);
 }

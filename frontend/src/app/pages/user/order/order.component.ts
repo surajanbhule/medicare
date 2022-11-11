@@ -46,6 +46,10 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    console.log(this.total_bill);
+
+
     this.userService.getCart(this.loginService.getUser().id).subscribe(
       (data: any) => {
         console.log(data.id);

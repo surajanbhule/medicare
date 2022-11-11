@@ -55,6 +55,14 @@ input:focus{
     border-left: 0px solid white;
 }
 
+.fixed{
+    position: fixed;
+    width: 100%;
+    transition: 0.2s linear;
+    top: 0px;
+    left: 0px;
+}
+
 
 
 

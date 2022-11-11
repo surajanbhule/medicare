@@ -11,32 +11,38 @@ import { UserService } from 'src/app/services/user.service';
 export class PendingOrdersComponent implements OnInit {
   orders: any = [];
   products: any = [];
+  user: any = {};
   constructor(
     private userService: UserService,
     private loginService: LoginService,
-    private imageService: ImageProcessingService,
+    private imageService: ImageProcessingService
   ) {}
 
   ngOnInit(): void {
+    this.userService.getPendingOrder().subscribe((data: any) => {
+      this.orders = data;
 
-     this.userService
-       .getPendingOrder()
-       .subscribe((data: any) => {
-         this.orders = data;
+      for (let o of this.orders) {
+        this.userService.getOrderProducts(o.id).subscribe((data) => {
+          this.products = data;
 
-         for (let o of this.orders) {
-           this.userService.getOrderProducts(o.id).subscribe((data) => {
-             this.products = data;
+          for (let p of this.products) {
+            p = this.imageService.createProductImages(p);
+          }
+          o.product_list = this.products;
+        });
+      }
 
-             for (let p of this.products) {
-               p = this.imageService.createProductImages(p);
-             }
-             o.product_list = this.products;
-           });
-         }
-
-         console.log(this.orders);
-       });
-
+      console.log(this.orders);
+    });
   }
+
+  completeOrder(order_id:any){
+    this.userService.completeOrder(order_id).subscribe(
+      (data)=>{
+        alert('completed');
+      }
+    )
+  }
+
 }

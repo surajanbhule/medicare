@@ -88,4 +88,8 @@ export class UserService {
   public getPendingOrder() {
     return this.http.get(`${baseUrl}/users/orders`);
   }
+
+  public completeOrder(order_id:any){
+    return this.http.get(`${baseUrl}/users/complete-order/${order_id}`);
+  }
 }
