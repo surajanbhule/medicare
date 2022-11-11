@@ -37,6 +37,8 @@ import { AddAddressComponent } from './pages/user/add-address/add-address.compon
 import { UpdateAddressComponent } from './pages/user/update-address/update-address.component';
 import { ViewUserAddressComponent } from './pages/user/view-user-address/view-user-address.component';
 import { PendingOrdersComponent } from './pages/admin/pending-orders/pending-orders.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 
 
@@ -73,6 +75,8 @@ import { PendingOrdersComponent } from './pages/admin/pending-orders/pending-ord
     UpdateAddressComponent,
     ViewUserAddressComponent,
     PendingOrdersComponent,
+    UpdateUserComponent,
+    ChangePasswordComponent,
     
   ],
   imports: [

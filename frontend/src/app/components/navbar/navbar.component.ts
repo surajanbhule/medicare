@@ -32,7 +32,12 @@ export class NavbarComponent implements OnInit {
 
     this.loginService.loginStatusSubject.asObservable().subscribe((data) => {
       this.isLoggedIn = this.loginService.isLoggedIn();
-      this.user = this.loginService.getUser();
+       this.userService
+         .getUser(this.loginService.getUser().id)
+         .subscribe((data: any) => {
+           console.log(data);
+           this.user = data;
+         });
       this.isAdmin = this.loginService.isAdmin();
       this.isNormal = this.loginService.isNormal();
     });
@@ -41,6 +46,17 @@ export class NavbarComponent implements OnInit {
       this.products_in_cart = data.products.length;
       console.log(this.products_in_cart);
     });
+
+    this.userService.userStatus.asObservable().subscribe(
+      (data)=>{
+         this.userService
+           .getUser(this.loginService.getUser().id)
+           .subscribe((data: any) => {
+             console.log(data);
+             this.user = data;
+           });
+      }
+    )
 
     this.userService.cartStatus.asObservable().subscribe((data: any) => {
       this.userService.getCart(this.user.id).subscribe((data: any) => {

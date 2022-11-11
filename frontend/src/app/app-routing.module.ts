@@ -11,10 +11,12 @@ import { UpdateProductComponent } from './pages/admin/update-product/update-prod
 import { ViewProductImagesComponent } from './pages/admin/view-product-images/view-product-images.component';
 import { ViewProductComponent } from './pages/admin/view-product/view-product.component';
 import { ViewUsersComponent } from './pages/admin/view-users/view-users.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { AddAddressComponent } from './pages/user/add-address/add-address.component';
 import { UpdateAddressComponent } from './pages/user/update-address/update-address.component';
 import { UserAddressComponent } from './pages/user/user-address/user-address.component';
@@ -42,6 +44,16 @@ const routes: Routes = [
   {
     path: 'home/:cat_id',
     component: HomeComponent,
+  },
+  {
+    path: 'update-user/:user_id',
+    component: UpdateUserComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    pathMatch: 'full',
   },
   {
     path: 'admin',
@@ -118,6 +130,10 @@ const routes: Routes = [
       {
         path: 'update-address/:address_id',
         component: UpdateAddressComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
       },
     ],
   },

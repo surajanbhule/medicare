@@ -35,7 +35,7 @@
         </div>
     </mat-card-content>
     <mat-card-actions class="text-center">
-        <button mat-raised-button color="primary">Update Profile</button>
-        <button mat-raised-button color="accent">Change Password</button>
+        <button mat-raised-button color="primary" [routerLink]="'/update-user/'+user.id">Update Profile</button>
+        <button mat-raised-button color="accent" routerLink="/change-password">Change Password</button>
     </mat-card-actions>
 </mat-card>

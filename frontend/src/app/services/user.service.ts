@@ -9,6 +9,7 @@ import baseUrl from './helper';
 export class UserService {
   public cartStatus = new Subject<boolean>();
   public orderStatus = false;
+  public userStatus = new Subject<boolean>();
 
   constructor(private http: HttpClient) {}
 
@@ -16,8 +17,24 @@ export class UserService {
     return this.http.post(`${baseUrl}/users/`, user);
   }
 
+  public updateUser(user: any) {
+    return this.http.put(`${baseUrl}/users/`, user);
+  }
+
   public getUsers() {
     return this.http.get(`${baseUrl}/users/`);
+  }
+
+  public getUser(user_id: any) {
+    return this.http.get(`${baseUrl}/users/user/${user_id}`);
+  }
+
+  public confirmPassword(user: any) {
+    return this.http.post(`${baseUrl}/users/confirm-password`, user);
+  }
+
+  public changePassword(user: any) {
+    return this.http.post(`${baseUrl}/users/change-password`, user);
   }
 
   public addProductToCart(cart_id: any, product: any) {

@@ -1,0 +1,70 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 text-center">
+
+            <mat-card class="bg-light mb-3">
+
+                <mat-card-title>
+                    <div class="container text-center">
+                        <img src="./../../../assets/logo.jpg" alt="medicare" width="75px" />
+                    </div>
+                    <h1 class="text-center">Update Profile Details</h1>
+                </mat-card-title>
+
+                <mat-card-content>
+                    <form (ngSubmit)="updateUser()">
+
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Enter Your Username</mat-label>
+                            <input matInput placeholder="Username " [(ngModel)]="user.username" name="username"
+                                required />
+                            <mat-hint>Username must be unique !!!!</mat-hint>
+                        </mat-form-field>
+
+                        <mat-form-field hidden appearance="outline" class="w-100">
+                            <mat-label>Enter Your Password</mat-label>
+                            <input hidden matInput placeholder="Password " [(ngModel)]="user.password" name="password"
+                                required />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Enter Your First Name</mat-label>
+                            <input matInput placeholder="First Name " [(ngModel)]="user.first_name" name="first_name"
+                                required />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Enter Your Last Name</mat-label>
+                            <input matInput placeholder="Last Name " [(ngModel)]="user.last_name" name="last_name"
+                                required />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Enter Your Email</mat-label>
+                            <input matInput placeholder="Email " [(ngModel)]="user.user_email" name="user_email"
+                                required />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Enter Your Phone</mat-label>
+                            <input matInput placeholder="Phone " [(ngModel)]="user.user_phone" name="user_phone"
+                                required />
+                        </mat-form-field>
+
+                        <div class="container">
+
+                            <button type="submit" mat-raised-button color="primary">Update</button>
+
+                            <button type="reset" mat-raised-button color="warn" class="ms-3">Clear</button>
+
+                        </div>
+
+
+
+                    </form>
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+    </div>
+</div>

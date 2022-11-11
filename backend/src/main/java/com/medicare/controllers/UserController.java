@@ -40,6 +40,8 @@ public class UserController {
     @Autowired
     private OrderService orderService;
 
+
+
     @PostMapping("/")
     public User addUser(@RequestBody User user) throws Exception {
 
@@ -68,6 +70,34 @@ public class UserController {
     public Set<User> getUsers(){
         return userService.getUsers();
     }
+
+    @PostMapping("/confirm-password")
+    public Boolean confirmPassword(@RequestBody User user){
+        User u = userService.getUserByUsername(user.getUsername());
+        boolean status = passwordEncoder.matches(user.getPassword(),u.getPassword());
+        System.out.println("User "+u);
+        System.out.println("Current Password "+user.getPassword());
+        System.out.println("username"+user.getUsername());
+        return status;
+    }
+
+    @PostMapping("/change-password")
+    public Boolean changePassword(@RequestBody User user){
+
+        User u = userService.getUserByUsername(user.getUsername());
+        u.setPassword(passwordEncoder.encode(user.getPassword()));
+        userService.updateUser(u);
+        return true;
+    }
+
+    @GetMapping("/user/{user_id}")
+    public User getUser(@PathVariable("user_id")Long user_id){
+       User user = userService.getUserById(user_id);
+        System.out.println(user);
+        return user;
+    }
+
+
 
     @DeleteMapping("/{user_id}")
     public void deleteUser(@PathVariable("user_id")Long user_id){
