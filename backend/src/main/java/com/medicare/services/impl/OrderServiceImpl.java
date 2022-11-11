@@ -3,6 +3,7 @@ package com.medicare.services.impl;
 
 import com.medicare.models.*;
 import com.medicare.repositories.AddressRepository;
+import com.medicare.repositories.NotificationRepository;
 import com.medicare.repositories.OrderRepository;
 import com.medicare.services.CartService;
 import com.medicare.services.OrderService;
@@ -24,6 +25,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private AddressRepository addressRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     @Autowired
     private CartService cartService;
@@ -84,7 +88,16 @@ public class OrderServiceImpl implements OrderService {
          Date date = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 3 );
          userOrder.setDelivery_date(date);
          userOrder.setPending(false);
+         User user = userOrder.getUser();
 
+         Notification notification = new Notification();
+         notification.setUser(user);
+         notification.setChecked(false);
+         notification.setMsg("Order Shipped With Id: "+userOrder.getId() +
+                             " And Total Amount Of : "+userOrder.getTotal()+
+                             " Delivery Expected On "+date);
+
+         notificationRepository.save(notification);
          orderRepository.save(userOrder);
         return userOrder;
     }

@@ -25,6 +25,8 @@ public class User implements UserDetails {
     private String user_email;
     private String user_phone;
     private boolean enabled=true;
+    @OneToMany(mappedBy = "user")
+    private Set<Notification> notifications = new HashSet<>();
 
 
 

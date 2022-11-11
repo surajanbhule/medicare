@@ -23,7 +23,7 @@
 </button>
 
 <button color="basic" *ngIf="isLoggedIn && user && isNormal" mat-button (click)="openNotifications()">
-  <mat-icon matBadge="1" matBadgeColor="accent" matBadgeOverlap="true">notifications</mat-icon>
+  <mat-icon [matBadge]="notifications.length" matBadgeColor="accent" matBadgeOverlap="true">notifications</mat-icon>
 </button>
 
 <button color="basic" *ngIf="isLoggedIn && user && isAdmin"

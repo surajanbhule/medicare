@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NotificationComponent } from 'src/app/pages/user/notification/notification.component';
 import { ViewCartComponent } from 'src/app/pages/user/view-cart/view-cart.component';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
@@ -15,7 +16,7 @@ export class NavbarComponent implements OnInit {
   isAdmin = false;
   isNormal = false;
   user: any = null;
-
+  notifications:any=null;
 
   products_in_cart = 0;
   constructor(
@@ -33,6 +34,12 @@ export class NavbarComponent implements OnInit {
     this.isAdmin = this.loginService.isAdmin();
     this.isNormal = this.loginService.isNormal();
 
+    this.userService.getNotifications(this.loginService.getUser().id).subscribe(
+      (data:any)=>{
+        this.notifications=data;
+      }
+    )
+
     this.loginService.loginStatusSubject.asObservable().subscribe((data) => {
       this.isLoggedIn = this.loginService.isLoggedIn();
       this.userService
@@ -43,6 +50,11 @@ export class NavbarComponent implements OnInit {
         });
       this.isAdmin = this.loginService.isAdmin();
       this.isNormal = this.loginService.isNormal();
+      this.userService
+        .getNotifications(this.loginService.getUser().id)
+        .subscribe((data: any) => {
+          this.notifications = data;
+        });
     });
 
     this.userService.getCart(this.user.id).subscribe((data: any) => {
@@ -57,6 +69,12 @@ export class NavbarComponent implements OnInit {
           console.log(data);
           this.user = data;
         });
+
+        this.userService
+          .getNotifications(this.loginService.getUser().id)
+          .subscribe((data: any) => {
+            this.notifications = data;
+          });
     });
 
     this.userService.cartStatus.asObservable().subscribe((data: any) => {
@@ -93,5 +111,14 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  openNotifications() {}
+  openNotifications() {
+    this.cartDialog.open(NotificationComponent, {
+      height: '450px',
+      width:  '450px',
+      position: {
+        right: '0',
+        top: '0',
+      },
+    });
+  }
 }

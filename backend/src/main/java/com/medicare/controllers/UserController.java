@@ -2,6 +2,7 @@ package com.medicare.controllers;
 
 import com.medicare.models.*;
 import com.medicare.repositories.CartRepository;
+import com.medicare.repositories.NotificationRepository;
 import com.medicare.repositories.ProductRepository;
 import com.medicare.services.AddressService;
 import com.medicare.services.CartService;
@@ -39,6 +40,9 @@ public class UserController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
 
 
 
@@ -190,5 +194,11 @@ public class UserController {
     @GetMapping("/complete-order/{order_id}")
     public UserOrders completeOrder(@PathVariable("order_id") Long order_id){
         return orderService.completeOrder(order_id);
+    }
+
+    @GetMapping("/notification/{user_id}")
+    public Set<Notification> getNotifications(@PathVariable("user_id") Long user_id){
+        User user = userService.getUserById(user_id);
+        return new HashSet<>( notificationRepository.findByUser(user));
     }
 }

@@ -39,7 +39,8 @@
             <span class="ms-5"
                   [matBadge]="orders.length"
                   matBadgeColor="warn"
-                  matBadgePosition="above after"></span>
+                  matBadgePosition="above after"
+                  *ngIf="orders.length"></span>
         </button>
 
          <mat-divider></mat-divider>

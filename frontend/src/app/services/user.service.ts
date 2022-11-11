@@ -92,4 +92,8 @@ export class UserService {
   public completeOrder(order_id:any){
     return this.http.get(`${baseUrl}/users/complete-order/${order_id}`);
   }
+
+  public getNotifications(user_id:any){
+    return this.http.get(`${baseUrl}/users/notification/${user_id}`);
+  }
 }

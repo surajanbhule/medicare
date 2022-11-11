@@ -1,0 +1,12 @@
+
+<mat-list >
+    <div mat-subheader>Notifications</div>
+     <mat-list-item class="messege mt-2" *ngFor="let n of notifications">
+        
+           <mat-icon color="accent" mat-list-icon>sms</mat-icon>
+
+           <div matLine matTooltipPosition="left" [matTooltip]="n.msg">{{n.msg}}</div>
+        
+     </mat-list-item>
+     <mat-divider></mat-divider>
+</mat-list>

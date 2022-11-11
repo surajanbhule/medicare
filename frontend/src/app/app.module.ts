@@ -39,6 +39,7 @@ import { ViewUserAddressComponent } from './pages/user/view-user-address/view-us
 import { PendingOrdersComponent } from './pages/admin/pending-orders/pending-orders.component';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { NotificationComponent } from './pages/user/notification/notification.component';
 
 
 
@@ -77,6 +78,7 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
     PendingOrdersComponent,
     UpdateUserComponent,
     ChangePasswordComponent,
+    NotificationComponent,
     
   ],
   imports: [
