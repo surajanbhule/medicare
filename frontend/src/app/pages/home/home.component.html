@@ -59,8 +59,9 @@
                                
                             </mat-card-header>
                             <mat-card-content class="text-center">
-                                <img [src]="p.productImages[0].url" alt="" width="75px" height="75px">
-                                <mat-card-subtitle class="mt-1">
+                                <img (click)="showDetails(p)" [src]="p.productImages[0].url" alt="" width="75px" height="75px">
+                                <mat-divider></mat-divider>
+                                <mat-card-subtitle class="mt-1" (click)="showDetails(p)">
                                     {{p.product_name|productTitle}}
                                     <span *ngIf="p.product_name.length >= 35" [matTooltip]="p.product_name">...</span>
                                     <span class="empty-space" *ngIf="p.product_name.length <= 22" >..........</span>

@@ -10,6 +10,10 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.navbar{
+    background: #3F51B5;
+}
+
 .dashboard{
     color: #00C853;
 }
@@ -61,9 +65,12 @@ input:focus{
     transition: 0.2s linear;
     top: 0px;
     left: 0px;
+    
 }
 
-
+ .navbar-nav-scroll{
+    --bs-scroll-height: 100px;
+ }
 
 
 

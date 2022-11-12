@@ -1,25 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ImageProcessingService } from 'src/app/services/image-processing.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
-import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { ViewCartComponent } from '../user/view-cart/view-cart.component';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit {
   products: any = [];
   categories: any = [];
   cart_products: any = [];
   cat_id = 0;
   cart_id = 0;
+  productImages: any = [];
+  position = 0;
+  max = 0;
+  prev_btn = false;
+  next_btn = false;
 
   constructor(
     private productService: ProductService,
@@ -29,10 +33,13 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private userService: UserService,
+    @Inject(MAT_DIALOG_DATA) public product: any,
     private cartDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    this.productImages = this.product.productImages;
+    this.max = this.productImages.length;
     this.userService.getCart(this.loginService.getUser().id).subscribe(
       (data: any) => {
         this.cart_id = data.id;
@@ -40,83 +47,6 @@ export class HomeComponent implements OnInit {
       },
       (error) => console.log(error)
     );
-
-    this.productService.getPopularCategories().subscribe(
-      (data) => {
-        this.categories = data;
-      },
-      (error) => {
-        this.snack.open('Unable to load categories data', 'OK');
-      }
-    );
-
-    if (this.cat_id == undefined) {
-      this.cat_id = 0;
-    }
-
-    this.cat_id = this.route.snapshot.params['cat_id'];
-
-    if (this.cat_id == 0) {
-      this.productService.getProducts().subscribe(
-        (data) => {
-          this.products = data;
-
-          for (let p of this.products) {
-            p = this.imageProcessingService.createProductImages(p);
-          }
-        },
-        (error) => {
-          this.snack.open('unable to load product data', 'OK');
-        }
-      );
-    } else if (this.cat_id > 0) {
-      this.productService.getProductsByCategory(this.cat_id).subscribe(
-        (data) => {
-          this.products = data;
-
-          for (let p of this.products) {
-            p = this.imageProcessingService.createProductImages(p);
-          }
-        },
-        (error) => {
-          this.snack.open('unable to load product data', 'OK');
-        }
-      );
-    }
-
-    this.router.events.subscribe((event: any) => {
-      if (event instanceof NavigationEnd) {
-        this.cat_id = this.route.snapshot.params['cat_id'];
-
-        if (this.cat_id == 0) {
-          this.productService.getProducts().subscribe(
-            (data) => {
-              this.products = data;
-
-              for (let p of this.products) {
-                p = this.imageProcessingService.createProductImages(p);
-              }
-            },
-            (error) => {
-              this.snack.open('unable to load product data', 'OK');
-            }
-          );
-        } else if (this.cat_id > 0) {
-          this.productService.getProductsByCategory(this.cat_id).subscribe(
-            (data) => {
-              this.products = data;
-
-              for (let p of this.products) {
-                p = this.imageProcessingService.createProductImages(p);
-              }
-            },
-            (error) => {
-              this.snack.open('unable to load product data', 'OK');
-            }
-          );
-        }
-      }
-    });
 
     this.userService
       .getCart(this.loginService.getUser().id)
@@ -133,7 +63,6 @@ export class HomeComponent implements OnInit {
           console.log(this.cart_products);
         });
     });
-
     console.log(this.cart_products);
   }
 
@@ -188,24 +117,36 @@ export class HomeComponent implements OnInit {
   }
 
   gotoCart() {
-      this.cartDialog.open(ViewCartComponent, {
-        height: '500px',
-        width: '900px',
-        position: {
-          right: '0',
-          top: '0',
-        },
-      });
+    this.cartDialog.open(ViewCartComponent, {
+      height: '500px',
+      width: '900px',
+      position: {
+        right: '0',
+        top: '0',
+      },
+    });
   }
 
-  showDetails(product:any){
-     this.cartDialog.open(ProductDetailsComponent, {
-       height: '900px',
-       width:  '900px',
-       data: product,
-       position:{
-        top: '50px',
-       }
-     });
+  prev() {
+    if (this.position == 0) {
+      this.prev_btn = true;
+      return;
+    }
+    this.next_btn = false;
+    this.position--;
+  }
+
+  next() {
+    if (this.position == this.max - 1) {
+      this.next_btn = true;
+
+      return;
+    }
+    this.prev_btn = false;
+    this.position++;
+  }
+
+  changePosition(n:any){
+    this.position=n;
   }
 }

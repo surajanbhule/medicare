@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatAccordion, MatExpansionModule, MAT_ACCORDION } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { MatAccordion, MatExpansionModule, MAT_ACCORDION } from '@angular/materi
     MatCheckboxModule,
     MatRadioModule,
     MatSlideToggleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatChipsModule
   
   ]
 })

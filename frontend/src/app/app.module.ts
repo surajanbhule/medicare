@@ -40,6 +40,7 @@ import { PendingOrdersComponent } from './pages/admin/pending-orders/pending-ord
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { NotificationComponent } from './pages/user/notification/notification.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 
 
@@ -79,6 +80,7 @@ import { NotificationComponent } from './pages/user/notification/notification.co
     UpdateUserComponent,
     ChangePasswordComponent,
     NotificationComponent,
+    ProductDetailsComponent,
     
   ],
   imports: [

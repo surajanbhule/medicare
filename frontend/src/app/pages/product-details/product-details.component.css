@@ -1,0 +1,25 @@
+.discount {
+    color: green;
+}
+
+.no-discount {
+    color: white;
+}
+
+.cart {
+    color: green;
+}
+
+ .preview-image{
+    border: 0.5px solid black;
+    border-collapse: collapse;
+
+ }
+
+ .product_title{
+    font-weight: bolder;
+ }
+
+ .pricing{
+    font-weight: bolder;
+ }
