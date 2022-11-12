@@ -1,4 +1,4 @@
-<mat-icon color="warn" mat-dialog-close>close</mat-icon>
+<mat-icon color="warn" mat-dialog-close>cancel</mat-icon>
 <mat-card class="example-card mt-2">
 
     <div class="container-fluid">
@@ -52,7 +52,7 @@
 
                         Add To Cart
                     </button>
-                    <button mat-flat-button class="cart" (click)="gotoCart()" *ngIf="productInCart(product.id)">
+                    <button mat-flat-button mat-dialog-close class="cart" (click)="gotoCart()" *ngIf="productInCart(product.id)">
                         <mat-icon class="cart">check</mat-icon>
                         Go To Cart
                     </button>

@@ -4,6 +4,7 @@ import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NotificationComponent } from 'src/app/pages/user/notification/notification.component';
 import { ViewCartComponent } from 'src/app/pages/user/view-cart/view-cart.component';
 import { LoginService } from 'src/app/services/login.service';
+import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,17 +17,19 @@ export class NavbarComponent implements OnInit {
   isAdmin = false;
   isNormal = false;
   user: any = null;
-  notifications:any=null;
+  notifications: any = null;
+  cartOpen = false;
+  msgOpen = false;
+  search = '';
 
   products_in_cart = 0;
   constructor(
     public loginService: LoginService,
     private router: Router,
     private userService: UserService,
-    private cartDialog: MatDialog
+    private cartDialog: MatDialog,
+    private productService:ProductService
   ) {}
-
-
 
   ngOnInit(): void {
     this.isLoggedIn = this.loginService.isLoggedIn();
@@ -34,11 +37,11 @@ export class NavbarComponent implements OnInit {
     this.isAdmin = this.loginService.isAdmin();
     this.isNormal = this.loginService.isNormal();
 
-    this.userService.getNotifications(this.loginService.getUser().id).subscribe(
-      (data:any)=>{
-        this.notifications=data;
-      }
-    )
+    this.userService
+      .getNotifications(this.loginService.getUser().id)
+      .subscribe((data: any) => {
+        this.notifications = data;
+      });
 
     this.loginService.loginStatusSubject.asObservable().subscribe((data) => {
       this.isLoggedIn = this.loginService.isLoggedIn();
@@ -70,11 +73,11 @@ export class NavbarComponent implements OnInit {
           this.user = data;
         });
 
-        this.userService
-          .getNotifications(this.loginService.getUser().id)
-          .subscribe((data: any) => {
-            this.notifications = data;
-          });
+      this.userService
+        .getNotifications(this.loginService.getUser().id)
+        .subscribe((data: any) => {
+          this.notifications = data;
+        });
     });
 
     this.userService.cartStatus.asObservable().subscribe((data: any) => {
@@ -101,7 +104,8 @@ export class NavbarComponent implements OnInit {
   }
 
   public showCart() {
-    this.cartDialog.open(ViewCartComponent, {
+    this.cartOpen = true;
+    const dialogREf = this.cartDialog.open(ViewCartComponent, {
       height: '450px',
       width: '1000px',
       position: {
@@ -109,16 +113,33 @@ export class NavbarComponent implements OnInit {
         top: '0',
       },
     });
+
+    dialogREf.afterClosed().subscribe((data) => {
+      this.cartOpen = false;
+    });
   }
 
   openNotifications() {
-    this.cartDialog.open(NotificationComponent, {
+    this.msgOpen = true;
+    const ref = this.cartDialog.open(NotificationComponent, {
       height: '450px',
-      width:  '450px',
+      width: '450px',
       position: {
         right: '0',
         top: '0',
       },
     });
+
+    ref.afterClosed().subscribe((data) => {
+      this.msgOpen = false;
+    });
+  }
+
+  searchProducts(){
+    if(this.search.length == 0){
+      this.router.navigate(['/home/0']);
+    }else{
+      this.router.navigate(['/search/'+this.search]);
+    }
   }
 }

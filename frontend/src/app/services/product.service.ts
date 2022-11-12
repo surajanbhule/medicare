@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Product } from 'src/model/product.model';
 import baseUrl from './helper';
 
@@ -7,6 +8,8 @@ import baseUrl from './helper';
   providedIn: 'root',
 })
 export class ProductService {
+  public searchStatus = new Subject<boolean>();
+
   constructor(private http: HttpClient) {}
 
   public addProduct(product: FormData) {
@@ -15,6 +18,14 @@ export class ProductService {
 
   public getProducts() {
     return this.http.get(`${baseUrl}/products/`);
+  }
+
+  public searchProducts(model: any) {
+    return this.http.get(`${baseUrl}/products/search/${model}`);
+  }
+
+  public searchProductsStartWith(model: any) {
+    return this.http.get(`${baseUrl}/products/search-startwith/${model}`);
   }
 
   public getProductsByCategory(cat_id: any) {

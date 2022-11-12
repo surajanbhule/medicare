@@ -35,7 +35,9 @@
                 <button class="cat-btn ms-1" *ngFor="let c of categories" [routerLink]="'/home/'+c.id" >
                     {{c.category_name}}
                 </button>
-                <button class="cat-btn all-cat" routerLink="/home/0">View All</button>
+                <mat-chip-list>
+                    <mat-chip color="accent" selected><span  routerLink="/home/0">View All</span></mat-chip>
+                </mat-chip-list>
                 
             </ul>
         </div>

@@ -3,6 +3,7 @@ package com.medicare.controllers;
 import com.medicare.models.Category;
 import com.medicare.models.Product;
 import com.medicare.models.ProductImage;
+import com.medicare.repositories.ProductRepository;
 import com.medicare.services.CategoryService;
 import com.medicare.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class ProductController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ProductRepository  productRepository;
 
     @PostMapping(value = "/",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public Product addProduct(@RequestPart("product") Product product,
@@ -83,6 +87,16 @@ public class ProductController {
     @GetMapping("/{product_id}")
     public Product getProduct(@PathVariable("product_id") Long product_id){
         return productService.getProduct(product_id);
+    }
+
+    @GetMapping("/search/{product_name}")
+    public Set<Product> searchProducts(@PathVariable("product_name")String product_name){
+        return new HashSet<>(productRepository.findByProduct_NameLike(product_name));
+    }
+
+    @GetMapping("/search-startwith/{product_name}")
+    public Set<Product> searchProductsStartswith(@PathVariable("product_name")String product_name){
+        return new HashSet<>(productRepository.findByProduct_NameStartLike(product_name));
     }
 
 

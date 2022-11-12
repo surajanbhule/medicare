@@ -41,6 +41,7 @@ import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { NotificationComponent } from './pages/user/notification/notification.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { SearchProductComponent } from './pages/search-product/search-product.component';
 
 
 
@@ -81,6 +82,7 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
     ChangePasswordComponent,
     NotificationComponent,
     ProductDetailsComponent,
+    SearchProductComponent,
     
   ],
   imports: [

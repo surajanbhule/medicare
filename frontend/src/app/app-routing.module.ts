@@ -16,6 +16,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { SearchProductComponent } from './pages/search-product/search-product.component';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { AddAddressComponent } from './pages/user/add-address/add-address.component';
 import { UpdateAddressComponent } from './pages/user/update-address/update-address.component';
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: 'home/:cat_id',
     component: HomeComponent,
+  },
+  {
+    path:'search/:model',
+    component:SearchProductComponent
   },
   {
     path: 'update-user/:user_id',

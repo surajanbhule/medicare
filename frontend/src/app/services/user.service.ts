@@ -10,6 +10,7 @@ export class UserService {
   public cartStatus = new Subject<boolean>();
   public orderStatus = false;
   public userStatus = new Subject<boolean>();
+  public cartOpen=false;
 
   constructor(private http: HttpClient) {}
 
