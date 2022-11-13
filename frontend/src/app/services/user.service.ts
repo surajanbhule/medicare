@@ -10,7 +10,7 @@ export class UserService {
   public cartStatus = new Subject<boolean>();
   public orderStatus = false;
   public userStatus = new Subject<boolean>();
-  public cartOpen=false;
+  public cartOpen = false;
 
   constructor(private http: HttpClient) {}
 
@@ -90,11 +90,15 @@ export class UserService {
     return this.http.get(`${baseUrl}/users/orders`);
   }
 
-  public completeOrder(order_id:any){
+  public getAllOrder() {
+    return this.http.get(`${baseUrl}/users/all-orders`);
+  }
+
+  public completeOrder(order_id: any) {
     return this.http.get(`${baseUrl}/users/complete-order/${order_id}`);
   }
 
-  public getNotifications(user_id:any){
+  public getNotifications(user_id: any) {
     return this.http.get(`${baseUrl}/users/notification/${user_id}`);
   }
 }

@@ -13,40 +13,40 @@
   <span class="nav-spacer"></span>
 
       
-      <input [(ngModel)]="search" 
-             matInput class="form-control"
+      <input [(ngModel)]="search"  
              type="search" placeholder="Search" aria-label="Search"
              (keyup)="searchProducts()"
-             (change)="searchProducts()">
-      <button mat-raised-button class="search-btn"><mat-icon color="primary">search</mat-icon></button>
+             (change)="searchProducts()"
+             *ngIf="!isAdmin">
+      <button *ngIf="!isAdmin" mat-raised-button class="search-btn"><mat-icon color="primary">search</mat-icon></button>
       
   <span class="nav-spacer"></span>
 
   
 
-<button mat-button [disabled]="cartOpen" *ngIf="isLoggedIn && user && products_in_cart" (click)="showCart()" >
+<button mat-button [disabled]="cartOpen" *ngIf="isNormal" (click)="showCart()" >
   Cart <mat-icon [matBadge]="products_in_cart"  class="demo-section" matBadgeColor="accent">shopping_cart</mat-icon>
 </button>
 
-<button [disabled]="msgOpen" color="basic" *ngIf="isLoggedIn && user && isNormal" mat-button (click)="openNotifications()">
-  <mat-icon [matBadge]="notifications.length" matBadgeColor="accent" matBadgeOverlap="true">notifications</mat-icon>
+<button [disabled]="msgOpen" color="basic" *ngIf="isNormal" mat-button (click)="openNotifications()">
+  <mat-icon *ngIf="notifications" [matBadge]="notifications.length" matBadgeColor="accent" matBadgeOverlap="true">notifications</mat-icon>
 </button>
 
-<button color="basic" *ngIf="isLoggedIn && user && isAdmin"
+<button color="basic" *ngIf="isAdmin"
           mat-button
           (click)="openDashboard()">
     <mat-icon matTooltip="Go To Dashboard">admin_panel_settings</mat-icon>
     Dashboard      
 </button>
 
-<button color="basic"  *ngIf="isLoggedIn && user && isNormal" mat-button (click)="openDashboard()">
+<button color="basic"  *ngIf="isNormal" mat-button (click)="openDashboard()">
   <mat-icon>account_circle</mat-icon>
-  {{user.first_name}} {{user.last_name}}
+  {{user?.first_name}} {{user?.last_name}}
 </button>
 
 
 
-  <a *ngIf="!isLoggedIn "
+  <a *ngIf="!isLoggedIn"
      mat-icon-button 
      routerLink="login">
     <mat-icon>login</mat-icon>

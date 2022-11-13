@@ -1,3 +1,8 @@
-.messege{
-    border: 1px solid lightgray;
+
+
+mat-list-item{
+    border: 2.5px solid pink;
+    border-radius: 10px;
+    border-collapse: collapse;
+    font-weight: bolder;
 }

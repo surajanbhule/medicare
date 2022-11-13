@@ -13,14 +13,14 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  isLoggedIn = false;
-  isAdmin = false;
-  isNormal = false;
   user: any = null;
   notifications: any = null;
   cartOpen = false;
   msgOpen = false;
   search = '';
+  isNormal=false;
+  isAdmin=false;
+  isLoggedIn=false;
 
   products_in_cart = 0;
   constructor(
@@ -32,38 +32,38 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = this.loginService.isLoggedIn();
-    this.user = this.loginService.getUser();
-    this.isAdmin = this.loginService.isAdmin();
-    this.isNormal = this.loginService.isNormal();
 
-    this.userService
-      .getNotifications(this.loginService.getUser().id)
-      .subscribe((data: any) => {
-        this.notifications = data;
-      });
 
-    this.loginService.loginStatusSubject.asObservable().subscribe((data) => {
-      this.isLoggedIn = this.loginService.isLoggedIn();
+
+
+ 
+  this.loginService.loginStatusSubject.asObservable().subscribe((data) => {
+    
       this.userService
         .getUser(this.loginService.getUser().id)
         .subscribe((data: any) => {
           console.log(data);
           this.user = data;
+          this.isAdmin=this.loginService.isAdmin();
+          this.isNormal=this.loginService.isNormal();
+          this.isLoggedIn = this.loginService.isLoggedIn();
+          console.log(this.isAdmin)
+          console.log(this.isLoggedIn);
+          console.log(this.isNormal);
         });
-      this.isAdmin = this.loginService.isAdmin();
-      this.isNormal = this.loginService.isNormal();
+      
       this.userService
         .getNotifications(this.loginService.getUser().id)
         .subscribe((data: any) => {
           this.notifications = data;
         });
+
+           this.userService.getCart(this.user.id).subscribe((data: any) => {
+             this.products_in_cart = data.products.length;
+             console.log(this.products_in_cart);
+           });
     });
 
-    this.userService.getCart(this.user.id).subscribe((data: any) => {
-      this.products_in_cart = data.products.length;
-      console.log(this.products_in_cart);
-    });
 
     this.userService.userStatus.asObservable().subscribe((data) => {
       this.userService
@@ -71,6 +71,8 @@ export class NavbarComponent implements OnInit {
         .subscribe((data: any) => {
           console.log(data);
           this.user = data;
+          this.isAdmin = this.loginService.isAdmin();
+          this.isNormal = this.loginService.isNormal();
         });
 
       this.userService
@@ -84,8 +86,40 @@ export class NavbarComponent implements OnInit {
       this.userService.getCart(this.user.id).subscribe((data: any) => {
         this.products_in_cart = data.products.length;
         console.log(this.products_in_cart);
+        this.isAdmin = this.loginService.isAdmin();
+        this.isNormal = this.loginService.isNormal();
       });
     });
+
+       this.isLoggedIn=this.loginService.isLoggedIn(); 
+       this.isAdmin = this.loginService.isAdmin();
+       this.isNormal = this.loginService.isNormal();
+       
+      this.userService
+        .getNotifications(this.loginService.getUser().id)
+        .subscribe((data: any) => {
+          this.notifications = data;
+        });
+
+        this.userService
+          .getUser(this.loginService.getUser().id)
+          .subscribe((data: any) => {
+            console.log(data);
+            this.user = data;
+            this.isAdmin = this.loginService.isAdmin();
+            this.isNormal = this.loginService.isNormal();
+          });
+
+          if(this.user!=null){
+          this.userService.getCart(this.user.id||'').subscribe((data: any) => {
+            this.products_in_cart = data.products.length;
+            console.log(this.products_in_cart);
+            this.isAdmin = this.loginService.isAdmin();
+            this.isNormal = this.loginService.isNormal();
+          });
+        }
+
+          
   }
 
   logout() {

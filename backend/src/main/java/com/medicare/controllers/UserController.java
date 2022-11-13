@@ -191,6 +191,11 @@ public class UserController {
         return orderService.getAllPendingOrders();
     }
 
+    @GetMapping("/all-orders")
+    public Set<UserOrders> getAllOrder(){
+        return orderService.getAllOrders();
+    }
+
     @GetMapping("/complete-order/{order_id}")
     public UserOrders completeOrder(@PathVariable("order_id") Long order_id){
         return orderService.completeOrder(order_id);

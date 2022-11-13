@@ -32,13 +32,8 @@ export class SearchProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userService.getCart(this.loginService.getUser().id).subscribe(
-      (data: any) => {
-        this.cart_id = data.id;
-        console.log('Cart ID' + this.cart_id);
-      },
-      (error) => console.log(error)
-    );
+
+    
 
     this.search_model = this.route.snapshot.params['model'];
 
@@ -99,6 +94,14 @@ export class SearchProductComponent implements OnInit {
           console.log(this.cart_products);
         });
     });
+
+    this.userService.getCart(this.loginService.getUser().id).subscribe(
+      (data: any) => {
+        this.cart_id = data.id;
+        console.log('Cart ID' + this.cart_id);
+      },
+      (error) => console.log(error)
+    );
 
     console.log(this.cart_products);
   }
