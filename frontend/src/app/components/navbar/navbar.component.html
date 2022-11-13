@@ -28,7 +28,7 @@
   Cart <mat-icon [matBadge]="products_in_cart"  class="demo-section" matBadgeColor="accent">shopping_cart</mat-icon>
 </button>
 
-<button [disabled]="msgOpen" color="basic" *ngIf="isNormal" mat-button (click)="openNotifications()">
+<button [disabled]="msgOpen" color="basic" *ngIf="isNormal notifications" mat-button (click)="openNotifications()">
   <mat-icon *ngIf="notifications" [matBadge]="notifications.length" matBadgeColor="accent" matBadgeOverlap="true">notifications</mat-icon>
 </button>
 

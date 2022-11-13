@@ -6,6 +6,7 @@ import { ImageProcessingService } from 'src/app/services/image-processing.servic
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { ViewCartComponent } from '../user/view-cart/view-cart.component';
 
@@ -39,7 +40,13 @@ export class HomeComponent implements OnInit {
         this.categories = data;
       },
       (error) => {
-        this.snack.open('Unable to load categories data', 'OK');
+          Swal.fire({
+            icon: 'error',
+            title: 'Server Error !',
+            text: 'Server is down, sorry for the inconvenience!',
+          });
+        this.loginService.logout();
+        this.router.navigate(['login']);
       }
     );
 
@@ -59,7 +66,10 @@ export class HomeComponent implements OnInit {
           }
         },
         (error) => {
-          this.snack.open('unable to load product data', 'OK');
+       
+
+            this.loginService.logout();
+            this.router.navigate(['login']);
         }
       );
     } else if (this.cat_id > 0) {
@@ -72,7 +82,14 @@ export class HomeComponent implements OnInit {
           }
         },
         (error) => {
-          this.snack.open('unable to load product data', 'OK');
+           Swal.fire({
+             icon: 'error',
+             title: 'Server Error !',
+             text: 'Server is down, sorry for the inconvenience!',
+           });
+
+            this.loginService.logout();
+            this.router.navigate(['login']);
         }
       );
     }
@@ -91,7 +108,9 @@ export class HomeComponent implements OnInit {
               }
             },
             (error) => {
-              this.snack.open('unable to load product data', 'OK');
+             
+                this.loginService.logout();
+                this.router.navigate(['login']);
             }
           );
         } else if (this.cat_id > 0) {
@@ -104,7 +123,9 @@ export class HomeComponent implements OnInit {
               }
             },
             (error) => {
-              this.snack.open('unable to load product data', 'OK');
+              
+               this.loginService.logout();
+               this.router.navigate(['login'])
             }
           );
         }
@@ -142,7 +163,9 @@ export class HomeComponent implements OnInit {
 
   public addToCart(product: any) {
     if (!this.loginService.isLoggedIn()) {
-      this.snack.open('You must login to add product to cart', 'OK');
+        this.snack.open('You must login to add product to cart', 'OK');
+        this.router.navigate(['login'])
+    
       return;
     }
 
@@ -160,7 +183,6 @@ export class HomeComponent implements OnInit {
 
       this.userService.addProductToCart(this.cart_id, product).subscribe(
         (data) => {
-          this.snack.open('Product added to cart', 'OK');
           this.userService.cartStatus.next(true);
 
           this.userService
@@ -170,7 +192,11 @@ export class HomeComponent implements OnInit {
             });
         },
         (error) => {
-          this.snack.open('Product not added to cart', 'OK');
+            Swal.fire({
+              icon: 'error',
+              title: 'Server Down !',
+              text: 'Something went wrong product not added to cart, sorry for the inconvenience!',
+            });
         }
       );
     } else if (this.loginService.getUserRole() == 'ADMIN') {
@@ -203,7 +229,7 @@ export class HomeComponent implements OnInit {
 
   showDetails(product:any){
      this.cartDialog.open(ProductDetailsComponent, {
-       height: '900px',
+       height: '700px',
        width:  '900px',
        data: product,
        position:{

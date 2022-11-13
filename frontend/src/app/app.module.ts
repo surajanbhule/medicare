@@ -83,7 +83,6 @@ import { SearchProductComponent } from './pages/search-product/search-product.co
     NotificationComponent,
     ProductDetailsComponent,
     SearchProductComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -92,7 +91,7 @@ import { SearchProductComponent } from './pages/search-product/search-product.co
     RouterModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     HttpClientModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule.forRoot({

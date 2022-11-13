@@ -40,7 +40,7 @@
         </div>
         <mat-card-subtitle class="text-center mt-1">Pending Payment</mat-card-subtitle>
         <mat-chip-list>
-        <span class="empty-space">.......</span><img src="../../../../assets/cash.gif" width="30px" alt=""><mat-chip>{{pendingPayment}}</mat-chip>
+        <span class="empty-space">.......</span><img src="../../../../assets/cash.gif" width="30px" alt=""><mat-chip>{{pendingPayment| currency:'INR'}}</mat-chip>
         </mat-chip-list>
     </mat-card>
 </div>

@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -64,14 +65,21 @@ export class LoginComponent implements OnInit {
               }
             },
             (error)=>{
-              this.snackbar.open('Invalid Details, Try with correct details !!!','ok')
+              Swal.fire({
+                icon: 'error',
+                title: 'Invalid Username or Password',
+                text: 'If you are new ? .. Register',
+              });
             }
           )
         },
         (error)=>{
-          console.log('error');
-          console.log(error);
-          this.snackbar.open('Invalid Details, Try with correct details !!!','OK');
+          
+           Swal.fire({
+             icon: 'error',
+             title: 'Invalid Username or Password',
+             text: 'If you are new ? .. Register',
+           });
         }
       )
   }

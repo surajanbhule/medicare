@@ -16,6 +16,15 @@ export class AdminSidebarComponent implements OnInit {
     
      this.userService.getPendingOrder().subscribe(
       (data:any)=>{ this.orders = data; })
+
+      this.userService.cartStatus.asObservable().subscribe(
+        (data)=>
+        {
+           this.userService.getPendingOrder().subscribe((data: any) => {
+             this.orders = data;
+           });
+        }
+      )
   }
 
   logout() {

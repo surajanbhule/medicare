@@ -13,7 +13,7 @@ import { ViewCartComponent } from '../user/view-cart/view-cart.component';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit{
   products: any = [];
   categories: any = [];
   cart_products: any = [];
@@ -24,6 +24,7 @@ export class ProductDetailsComponent implements OnInit {
   max = 0;
   prev_btn = false;
   next_btn = false;
+ 
 
   constructor(
     private productService: ProductService,
@@ -69,6 +70,7 @@ export class ProductDetailsComponent implements OnInit {
   public addToCart(product: any) {
     if (!this.loginService.isLoggedIn()) {
       this.snack.open('You must login to add product to cart', 'OK');
+      
       return;
     }
 
@@ -97,6 +99,7 @@ export class ProductDetailsComponent implements OnInit {
         },
         (error) => {
           this.snack.open('Product not added to cart', 'OK');
+          
         }
       );
     } else if (this.loginService.getUserRole() == 'ADMIN') {
@@ -150,3 +153,5 @@ export class ProductDetailsComponent implements OnInit {
     this.position=n;
   }
 }
+
+

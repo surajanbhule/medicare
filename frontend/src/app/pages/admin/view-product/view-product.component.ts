@@ -72,6 +72,7 @@ export class ViewProductComponent implements OnInit {
               position: 'top-end',
               icon: 'error',
               title: 'Unable to delete product!',
+              text:'Already orders placed with this product, if you want you can update this product.',
               showConfirmButton: true,
             });
           }

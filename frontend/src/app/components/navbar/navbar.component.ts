@@ -93,13 +93,13 @@ export class NavbarComponent implements OnInit {
        this.isNormal = this.loginService.isNormal();
        
       this.userService
-        .getNotifications(this.loginService.getUser().id)
+        .getNotifications(this.loginService?.getUser()?.id)
         .subscribe((data: any) => {
           this.notifications = data;
         });
 
         this.userService
-          .getUser(this.loginService.getUser().id)
+          .getUser(this.loginService?.getUser()?.id)
           .subscribe((data: any) => {
             this.isAdmin = this.loginService.isAdmin();
             this.isNormal = this.loginService.isNormal();
@@ -129,7 +129,7 @@ export class NavbarComponent implements OnInit {
   }
 
   loadUser(){
-    this.userService.getUser(this.loginService?.getUser().id).subscribe(
+    this.userService.getUser(this.loginService?.getUser()?.id).subscribe(
       (data:any)=>{
         this.user=data;
           this.userService.getCart(this.user?.id).subscribe((data: any) => {

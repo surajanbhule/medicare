@@ -12,7 +12,7 @@ export class AddCategoryComponent implements OnInit {
   category = {
     category_name: '',
     category_description: '',
-    isPopular:0,
+    popular:false,
   };
   constructor(private productService: ProductService,
               private router:Router) {}
@@ -20,6 +20,7 @@ export class AddCategoryComponent implements OnInit {
   ngOnInit(): void {}
 
   addCategory() {
+    console.log(this.category)
     this.productService.addCategory(this.category).subscribe(
       (data) => {
       Swal.fire({

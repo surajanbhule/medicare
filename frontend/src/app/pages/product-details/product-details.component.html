@@ -12,7 +12,7 @@
                     </mat-icon>
                 </div>
 
-                <div class="text-center"><img width="350px" [src]="productImages[position].url" alt="IMAGE"></div>
+                <div class="text-center"><img height="350px" width="350px" [src]="productImages[position].url" alt="IMAGE"></div>
 
                 <img class="mt-1 ms-1 preview-image" (click)="changePosition(n)"
                     *ngFor="let i of productImages; let n = index" [src]="i.url" width="60px" alt="">

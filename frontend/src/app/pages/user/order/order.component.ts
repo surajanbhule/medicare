@@ -131,11 +131,11 @@ export class OrderComponent implements OnInit {
     this.order.user.id = this.loginService.getUser().id;
     this.userService.createOrder(this.order).subscribe(
       (data) => {
-        this.snack.open('Order Placed Successfully');
+        
 
         this.userService.deleteProductsFromCart(this.cart_id).subscribe(
           (data) => {
-            this.snack.open('Cart Cleared', 'OK');
+            
             this.userService.cartStatus.next(true);
           },
           (error) => {
@@ -144,7 +144,7 @@ export class OrderComponent implements OnInit {
         );
       },
       (error) => {
-        this.snack.open('Order not placed');
+        this.snack.open('Order not placed','ok');
       }
     );
   }

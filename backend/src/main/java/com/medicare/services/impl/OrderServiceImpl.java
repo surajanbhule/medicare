@@ -94,7 +94,7 @@ public class OrderServiceImpl implements OrderService {
          notification.setUser(user);
          notification.setChecked(false);
          notification.setMsg("Order Shipped With Id: "+userOrder.getId() +
-                             " And Total Amount Of : "+userOrder.getTotal()+
+                             " And Total Amount Of : "+Math.round(userOrder.getTotal())+
                              " Delivery Expected On "+date);
 
          notificationRepository.save(notification);

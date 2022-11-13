@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
     user_phone:''
   }
 
-  constructor(private userService:UserService,private snack:MatSnackBar) { }
+  constructor(private userService:UserService,private snack:MatSnackBar,
+              private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -58,15 +60,19 @@ export class RegisterComponent implements OnInit {
           icon: 'success',
           title: 'Registration successful !',
           showConfirmButton: false,
-          timer: 2500,
+          timer: 1500,
+           
         });
+        
+        this.router.navigate(['login']);
+
       },
       (error)=>{
         console.log(error);
         Swal.fire({
           icon: 'error',
-          title: 'Error !',
-          text: 'Something went wrong!',
+          title: 'Server Error !',
+          text: 'Server is down, sorry for the inconvenience!',
         });
       }
     )

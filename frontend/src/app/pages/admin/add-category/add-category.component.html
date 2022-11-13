@@ -1,5 +1,6 @@
 <mat-card class="mt-2">
     <h1 matSubheader>Add New Category</h1>
+    
     <mat-card-content>
         <div class="container mt-3">
   <div class="row">
@@ -28,7 +29,7 @@
           </textarea>
         </mat-form-field>
 
-          <mat-slide-toggle name="popular" class="example-margin"  [(ngModel)]="category.isPopular" >
+          <mat-slide-toggle name="popular" class="example-margin"  [(ngModel)]="category.popular" >
             Popular Category
           </mat-slide-toggle>
 
