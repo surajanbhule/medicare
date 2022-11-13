@@ -13,7 +13,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  user: any = null;
+  user: any = {
+
+  };
   notifications: any = null;
   cartOpen = false;
   msgOpen = false;
@@ -21,7 +23,6 @@ export class NavbarComponent implements OnInit {
   isNormal=false;
   isAdmin=false;
   isLoggedIn=false;
-
   products_in_cart = 0;
   constructor(
     public loginService: LoginService,
@@ -32,11 +33,7 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-
-
-
- 
+  this.loadUser()
   this.loginService.loginStatusSubject.asObservable().subscribe((data) => {
     
       this.userService
@@ -104,22 +101,43 @@ export class NavbarComponent implements OnInit {
         this.userService
           .getUser(this.loginService.getUser().id)
           .subscribe((data: any) => {
-            console.log(data);
-            this.user = data;
             this.isAdmin = this.loginService.isAdmin();
             this.isNormal = this.loginService.isNormal();
           });
 
-          if(this.user!=null){
-          this.userService.getCart(this.user.id||'').subscribe((data: any) => {
+         
+        
+          if(this.user.id>0){
+          this.userService.getCart(this.user.id).subscribe((data: any) => {
             this.products_in_cart = data.products.length;
             console.log(this.products_in_cart);
             this.isAdmin = this.loginService.isAdmin();
             this.isNormal = this.loginService.isNormal();
+          },
+          (error)=>{
+
           });
         }
 
-          
+         
+         if(this.user!=null){
+         this.userService.getCart(this.user?.id).subscribe((data: any) => {
+           this.products_in_cart = data.products.length;
+           console.log(this.products_in_cart);
+         });  
+         }
+  }
+
+  loadUser(){
+    this.userService.getUser(this.loginService?.getUser().id).subscribe(
+      (data:any)=>{
+        this.user=data;
+          this.userService.getCart(this.user?.id).subscribe((data: any) => {
+            this.products_in_cart = data.products.length;
+            console.log(this.products_in_cart);
+          }); 
+      }
+    )
   }
 
   logout() {

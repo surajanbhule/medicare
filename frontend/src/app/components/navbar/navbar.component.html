@@ -24,7 +24,7 @@
 
   
 
-<button mat-button [disabled]="cartOpen" *ngIf="isNormal" (click)="showCart()" >
+<button mat-button [disabled]="cartOpen" *ngIf="isNormal && products_in_cart" (click)="showCart()" >
   Cart <mat-icon [matBadge]="products_in_cart"  class="demo-section" matBadgeColor="accent">shopping_cart</mat-icon>
 </button>
 
