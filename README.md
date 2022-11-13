@@ -39,6 +39,36 @@ Online medical application with admin panel, where admin can manage products, us
 #### Task 2 : 
     Test product rest api services
 
+#### Task 3: 
+    Create Api & Service Points For Cart Orders and More.
+#### Task 4: 
+    Create Admin & Add Create, Update Delete and View for Products, Categories.
+#### Task 5:
+    Add Order View And Update For Admin.
+
+
+
+### Sprint 3 :
+=======================================================
+#### Task 1: 
+    Create Home for product showcase with                   search and category wise viewing.
+#### Task 2:
+    Add Cart Features for user
+#### Task 3:
+    Add Notifications And Place Orders Feature
+#### Task 4: 
+    Add Address & Delete
+
+### Sprint 4 :
+=======================================================
+#### Task 1: 
+    View orders for user & Update profile and Change password.
+#### Task 2: 
+    Pending orders for admin.
+#### Task 3: Test App
+
+
+
 
 
 
