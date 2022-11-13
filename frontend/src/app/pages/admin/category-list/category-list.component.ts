@@ -6,67 +6,57 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.css']
+  styleUrls: ['./category-list.component.css'],
 })
 export class CategoryListComponent implements OnInit {
+  displayedColumns: string[] = [
+    'position',
+    'category_name',
+    'category_description',
+    'actions',
+    
+  ];
+  categories: any[] = [];
 
-  categories: any[]=[];
-
-  constructor(private productService:ProductService) { }
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getCategories().subscribe(
-      (data:any)=>{
-        this.categories = data;
+    this.productService.getCategories().subscribe((data: any) => {
+      this.categories = data;
+    });
+  }
+
+  public deleteCategory(id: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.deleteCategory(id).subscribe(
+          (data) => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Category deleted successfully!',
+              showConfirmButton: true,
+            });
+            location.reload();
+          },
+          (error) => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'Unable to delete category!',
+              showConfirmButton: true,
+            });
+          }
+        );
       }
-    )
-  }
-
-  public deleteCategory(id:any){
-
-    
-
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      
-this.productService.deleteCategory(id).subscribe(
-  (data) => {
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Category deleted successfully!',
-      showConfirmButton: true,
-    });
-    location.reload();
-  },
-  (error) => {
-    Swal.fire({
-      position: 'top-end',
-      icon: 'error',
-      title: 'Unable to delete category!',
-      showConfirmButton: true,
     });
   }
-);
-      
-    }
-  });
-
-
-
-
-
-
-
-    
-  }
-
 }

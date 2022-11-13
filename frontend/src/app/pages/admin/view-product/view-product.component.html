@@ -1,9 +1,75 @@
 <mat-card class="mt-2">
     <h1 matSubheader>Product List</h1>
-    <mat-card-actions>
-        <button mat-raised-button color="primary" routerLink="/admin/add-product"> <mat-icon color="accent">add_circle</mat-icon> New Product </button>
-    </mat-card-actions>
-    <mat-list>
+   
+  <div class="button-container">
+    <button mat-raised-button color="primary" routerLink="/admin/add-product">
+        <mat-icon color="accent">add_circle</mat-icon> New Product
+    </button>
+ </div>
+    <table mat-table [dataSource]="products" class="w-100 mat-elevation-z8">
+    
+ 
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="product_name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.product_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="product_price">
+            <th mat-header-cell *matHeaderCellDef> Price </th>
+            <td mat-cell *matCellDef="let element"> {{element.product_price | currency:'INR'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="product_discount">
+            <th mat-header-cell *matHeaderCellDef> Discount </th>
+            <td mat-cell *matCellDef="let element"> {{element.product_discount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="product_selling_price">
+            <th mat-header-cell *matHeaderCellDef> Selling Price </th>
+            <td mat-cell *matCellDef="let element"> {{element.product_selling_price | currency:'INR'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef> Category </th>
+            <td mat-cell *matCellDef="let element"> {{element.category.category_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> actions </th>
+            <td mat-cell *matCellDef="let element"> 
+                <mat-icon color="warn" (click)="deleteProduct(element.id)">delete</mat-icon>
+                <mat-icon class="ms-1" color="primary" [routerLink]="'/admin/update-product/'+element.id">edit</mat-icon>
+                <mat-icon class="ms-1" (click)="showImages(element)">images</mat-icon>
+            </td>
+        </ng-container>
+    
+
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter</td>
+        </tr>
+        
+    </table>
+
+
+
+
+
+
+    <!--  Product list -> using mat list
+        
+        <mat-list *ngIf="false">
+        
+        
         <mat-list-item class="product-box" *ngFor="let p of products" >
             
             <div mat-line>{{p.product_name}}</div>
@@ -34,5 +100,7 @@
             <mat-divider></mat-divider>
            
         </mat-list-item>
+       
+        
     </mat-list>
-</mat-card>
+</mat-card> -->

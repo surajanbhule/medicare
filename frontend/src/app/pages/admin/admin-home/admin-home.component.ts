@@ -29,6 +29,7 @@ export class AdminHomeComponent implements OnInit {
       for (let o of this.orders) {
         this.userService.getOrderProducts(o.id).subscribe((data) => {
           this.products = data;
+          
           if (o.payment_status != 'Cash on delivery') {
             this.paymentRecieved += o.total;
           }
@@ -36,6 +37,8 @@ export class AdminHomeComponent implements OnInit {
           if (o.payment_status == 'Cash on delivery') {
             this.pendingPayment += o.total;
           }
+
+
           for (let p of this.products) {
             p = this.imageService.createProductImages(p);
           }

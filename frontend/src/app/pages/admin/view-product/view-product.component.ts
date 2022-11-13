@@ -10,35 +10,43 @@ import { ViewProductImagesComponent } from '../view-product-images/view-product-
 @Component({
   selector: 'app-view-product',
   templateUrl: './view-product.component.html',
-  styleUrls: ['./view-product.component.css']
+  styleUrls: ['./view-product.component.css'],
 })
 export class ViewProductComponent implements OnInit {
-
-  products:any=[]
+  displayedColumns: string[] = [
+    'position',
+    'product_name',
+    'product_price',
+    'product_discount',
+    'product_selling_price',
+    'category',
+    'actions'
+  ];
   
-  constructor(private productService:ProductService,
-              private imageDialog:MatDialog,
-              private imageProcessingService:ImageProcessingService) { }
+  products: any = [];
+
+  constructor(
+    private productService: ProductService,
+    private imageDialog: MatDialog,
+    private imageProcessingService: ImageProcessingService
+  ) {}
 
   ngOnInit(): void {
-    this.productService
-      .getProducts()
-      .subscribe(
-        (data: any) => {
-          this.products = data;
-          
-          for(let p of this.products){
-            p = this.imageProcessingService.createProductImages(p);
-          }
-        },
-        (error) => {
-          alert('unable to load products');
+    this.productService.getProducts().subscribe(
+      (data: any) => {
+        this.products = data;
+
+        for (let p of this.products) {
+          p = this.imageProcessingService.createProductImages(p);
         }
-      );
+      },
+      (error) => {
+        alert('unable to load products');
+      }
+    );
   }
 
-  deleteProduct(id:any){
-
+  deleteProduct(id: any) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -70,23 +78,18 @@ export class ViewProductComponent implements OnInit {
         );
       }
     });
-
-
-
   }
 
-  showImages(product:Product){
+  showImages(product: Product) {
     console.log(product);
-    this.imageDialog.open(ViewProductImagesComponent,{
-      data:{
-        images:product.productImages,
-        productTitle:product.product_name
+    this.imageDialog.open(ViewProductImagesComponent, {
+      data: {
+        images: product.productImages,
+        productTitle: product.product_name,
       },
-      height:"250px",
-      width:"1000px",
-      disableClose:false
-      
+      height: '250px',
+      width: '1000px',
+      disableClose: false,
     });
   }
-
 }

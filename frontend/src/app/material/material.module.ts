@@ -21,6 +21,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatAccordion, MatExpansionModule, MAT_ACCORDION } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatRadioModule,
     MatSlideToggleModule,
     MatExpansionModule,
-    MatChipsModule
+    MatChipsModule,
+    MatPaginatorModule
   
   ]
 })

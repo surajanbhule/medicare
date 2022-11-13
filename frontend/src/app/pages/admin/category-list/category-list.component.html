@@ -1,15 +1,58 @@
 <mat-card class="mt-2">
     <h1 matSubheader>Categories</h1>
 
-    <mat-card-actions>
-         <button mat-raised-button color="primary" routerLink="/admin/add-category" matRipple>
+    <div class="button-container">
+        <button mat-raised-button color="primary" routerLink="/admin/add-category" matRipple>
             <mat-icon color="accent">add_circle</mat-icon>
             New Category
         </button>
-    </mat-card-actions>
-
-   
+    </div>
+    <table mat-table [dataSource]="categories" class="w-100 mat-elevation-z8">
     
+    
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="category_name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.category_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category_description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <td mat-cell *matCellDef="let element"> {{element.category_description}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button>
+                    <mat-icon color="warn" matTooltip="delete category" (click)="deleteCategory(element.id)">
+                        delete
+                    </mat-icon>
+                </button>
+                <button mat-icon-button>
+                    <mat-icon color="primary" matTooltip="update category" [routerLink]="'/admin/update-category/'+element.id">
+                        edit
+                    </mat-icon>
+                </button>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter</td>
+        </tr>
+    
+    </table>
+
+</mat-card>
+<!--     
     <mat-list *ngIf="categories">
         <mat-list-item *ngFor="let category of categories">
             <mat-icon mat-list-icon>category</mat-icon>
@@ -32,4 +75,4 @@
             <mat-divider></mat-divider>
         </mat-list-item>
     </mat-list>
-</mat-card>
+-->
